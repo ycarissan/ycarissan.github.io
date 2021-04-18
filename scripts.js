@@ -1,10 +1,14 @@
 const cards = document.querySelectorAll('.memory-card');
+const ncards = cards.length;
 
 let hasFlippedCard = false;
 let lockBoard = false;
 let firstCard, secondCard;
 
 function flipCard() {
+  if (!running) {
+    startTimer()
+  }
   if (lockBoard) return;
   if (this === firstCard) return;
 
@@ -33,7 +37,14 @@ function checkForMatch() {
 function disableCards() {
   firstCard.removeEventListener('click', flipCard);
   secondCard.removeEventListener('click', flipCard);
-
+  firstCard.classList.add('found');
+  secondCard.classList.add('found');
+  const nfound=document.querySelectorAll('.memory-card.found').length
+  console.log(nfound);
+  if (nfound == ncards) {
+    gameOver=true;
+    pauseTimer();
+  }
   resetBoard();
 }
 

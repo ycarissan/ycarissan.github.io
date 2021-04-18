@@ -1,5 +1,5 @@
-var startTimerButton = document.querySelector('.startTimer');
-var pauseTimerButton = document.querySelector('.pauseTimer');
+//var startTimerButton = document.querySelector('.startTimer');
+//var pauseTimerButton = document.querySelector('.pauseTimer');
 var timerDisplay = document.querySelector('.timer');
 var startTime;
 var updatedTime;
@@ -16,10 +16,10 @@ var running = 0;function startTimer(){
     running = 1;timerDisplay.style.background = "#FF0000";
     timerDisplay.style.cursor = "auto";
     timerDisplay.style.color = "yellow";
-    startTimerButton.classList.add('lighter');
-    pauseTimerButton.classList.remove('lighter');
-    startTimerButton.style.cursor = "auto";
-    pauseTimerButton.style.cursor = "pointer";
+//    startTimerButton.classList.add('lighter');
+//    pauseTimerButton.classList.remove('lighter');
+//    startTimerButton.style.cursor = "auto";
+//    pauseTimerButton.style.cursor = "pointer";
   }
 }function pauseTimer(){
   if (!difference){
@@ -32,10 +32,10 @@ var running = 0;function startTimer(){
     timerDisplay.style.background = "#A90000";
     timerDisplay.style.color = "#690000";
     timerDisplay.style.cursor = "pointer";
-    startTimerButton.classList.remove('lighter');
-    pauseTimerButton.classList.add('lighter');
-    startTimerButton.style.cursor = "pointer";
-    pauseTimerButton.style.cursor = "auto";
+//    startTimerButton.classList.remove('lighter');
+//    pauseTimerButton.classList.add('lighter');
+//    startTimerButton.style.cursor = "pointer";
+//    pauseTimerButton.style.cursor = "auto";
   } else {// if the timer was already paused, when they click pause again, start the timer againstartTimer();
   }
 }function resetTimer(){
@@ -48,10 +48,10 @@ var running = 0;function startTimer(){
   timerDisplay.style.background = "#A90000";
   timerDisplay.style.color = "#fff";
   timerDisplay.style.cursor = "pointer";
-  startTimerButton.classList.remove('lighter');
-  pauseTimerButton.classList.remove('lighter');
-  startTimerButton.style.cursor = "pointer";
-  pauseTimerButton.style.cursor = "auto";
+//  startTimerButton.classList.remove('lighter');
+//  pauseTimerButton.classList.remove('lighter');
+//  startTimerButton.style.cursor = "pointer";
+//  pauseTimerButton.style.cursor = "auto";
 }function getShowTime(){
   updatedTime = new Date().getTime();
   if (savedTime){
