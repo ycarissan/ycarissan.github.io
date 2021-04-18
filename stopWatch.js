@@ -13,9 +13,9 @@ var running = 0;function startTimer(){
     tInterval = setInterval(getShowTime, 1);// change 1 to 1000 above to run script every second instead of every millisecond. one other change will be needed in the getShowTime() function below for this to work. see comment there.   
  
     paused = 0;
-    running = 1;timerDisplay.style.background = "#FF0000";
+    running = 1;timerDisplay.style.background = "#155E99";
     timerDisplay.style.cursor = "auto";
-    timerDisplay.style.color = "yellow";
+//    timerDisplay.style.color = "yellow";
 //    startTimerButton.classList.add('lighter');
 //    pauseTimerButton.classList.remove('lighter');
 //    startTimerButton.style.cursor = "auto";
@@ -29,8 +29,8 @@ var running = 0;function startTimer(){
     savedTime = difference;
     paused = 1;
     running = 0;
-    timerDisplay.style.background = "#A90000";
-    timerDisplay.style.color = "#690000";
+    timerDisplay.style.background = "#1C7CCC";
+    timerDisplay.style.color = "#eeeeee";
     timerDisplay.style.cursor = "pointer";
 //    startTimerButton.classList.remove('lighter');
 //    pauseTimerButton.classList.add('lighter');
@@ -67,5 +67,5 @@ var running = 0;function startTimer(){
   minutes = (minutes < 10) ? "0" + minutes : minutes;
   seconds = (seconds < 10) ? "0" + seconds : seconds;
   milliseconds = (milliseconds < 100) ? (milliseconds < 10) ? "00" + milliseconds : "0" + milliseconds : milliseconds;
-  timerDisplay.innerHTML = hours + ':' + minutes + ':' + seconds + ':' + milliseconds;
+  timerDisplay.innerHTML = "" + hours + ':' + minutes + ':' + seconds + ':' + milliseconds;
 }

@@ -42,8 +42,8 @@ function disableCards() {
   const nfound=document.querySelectorAll('.memory-card.found').length
   console.log(nfound);
   if (nfound == ncards) {
-    gameOver=true;
     pauseTimer();
+    sauveMeilleurTemps();
   }
   resetBoard();
 }
