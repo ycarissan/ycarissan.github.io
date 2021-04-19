@@ -64,7 +64,8 @@ var running = 0;function startTimer(){
   var minutes = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
   var seconds = Math.floor((difference % (1000 * 60)) / 1000);
 //  var milliseconds = Math.floor((difference % (1000 * 60)) / 100);
-  var milliseconds = difference - (seconds - minutes * 60 - hours * 3600 ) * 1000
+  var milliseconds = difference - (seconds + minutes * 60 + hours * 3600 ) * 1000;
+//  console.log(hours + ":" + minutes + ":" + seconds + ":" + milliseconds + " -- " + difference);
   hours = (hours < 10) ? "0" + hours : hours;
   minutes = (minutes < 10) ? "0" + minutes : minutes;
   seconds = (seconds < 10) ? "0" + seconds : seconds;
