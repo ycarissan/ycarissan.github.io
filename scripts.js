@@ -44,6 +44,7 @@ function disableCards() {
   if (nfound == ncards) {
     pauseTimer();
     sauveMeilleurTemps();
+    party.confetti(secondCard);
   }
   resetBoard();
 }

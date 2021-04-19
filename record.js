@@ -1,16 +1,19 @@
 var meilleurTemps;
+var event = new Event("meilleurTemps");
 
-console.log(localStorage);
+
+//console.log(localStorage);
 if(localStorage.getItem("meilleurTemps")) {
 	meilleurTemps = localStorage.getItem("meilleurTemps");
 } else {
 	razMeilleurTemps();
 }
 montreMeilleurTemps();
-console.log(meilleurTemps);
+//console.log(meilleurTemps);
 
 function sauveMeilleurTemps() {
 	if (savedTime < meilleurTemps) {
+                party.sparkles(document.getElementById("tempsABattre"));
 		meilleurTemps = savedTime;
 		localStorage.setItem("meilleurTemps", meilleurTemps);
 		montreMeilleurTemps(meilleurTemps);
