@@ -6,14 +6,18 @@
 
 body {
   height: 100vh;
-  display: flex;
+/*  display: flex;*/
   background: #060AB2;
 }
 
 .memory-game {
-  width: 640px;
-  height: 640px;
-  margin: auto;
+/*  width: 640px;
+    height: 640px;
+*/
+  width: calc(100% - 30px);
+  height: 100%;
+/*  margin: auto;*/
+  float: right;
   display: flex;
   flex-wrap: wrap;
   perspective: 1000px;

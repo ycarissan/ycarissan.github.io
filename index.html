@@ -14,11 +14,12 @@
 <body>
 	<div id="timerContainer">
 		<div class="timer">Cliquer sur une carte</div>
-		<div class="timer" id="tempsABattre">jjj</div>
+		<div class="timer" id="tempsABattre"></div>
 		<div class="timer"> 
 			<div>
 				<button onclick="document.location.reload(true)"><i class="fas fa-redo fa-4x"></i></button>
-				<button onclick="razMeilleurTemps()"><i class="fas fa-trash-alt fa-4x"></i></button></div>
+				<button onclick="razMeilleurTemps()"><i class="fas fa-trash-alt fa-4x"></i></button>
+			</div>
 		</div>
 <!--			<div class="startTimer reset" onclick="startTimer()" > <i class="fas fa-play"></i> </div>
 			<div class="pauseTimer reset" onclick="pauseTimer()" > <i class="fas fa-pause"></i> </div>
@@ -26,8 +27,9 @@
 -->
 	</div>
 
-  <section class="memory-game">
-    <div class="memory-card" data-framework="aurelia">
+  <section class="memory-game" id="memory-game">
+<!--
+	<div class="memory-card" data-framework="aurelia">
       <img class="front-face" src="img/qlt45.svg" alt="Aurelia" />
       <img class="back-face" src="img/logo_me.svg" alt="JS Badge" />
     </div>
@@ -80,6 +82,7 @@
       <img class="front-face" src="img/klt45.svg" alt="React" />
       <img class="back-face" src="img/logo_me.svg" alt="JS Badge" />
     </div>
+-->
   </section>
 
   <script src="scripts.js"></script>

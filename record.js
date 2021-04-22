@@ -13,6 +13,7 @@ montreMeilleurTemps();
 
 function sauveMeilleurTemps() {
 	if (savedTime < meilleurTemps) {
+		document.getElementById('timerContainer').classList.add('start');
                 party.sparkles(document.getElementById("tempsABattre"));
 		meilleurTemps = savedTime;
 		localStorage.setItem("meilleurTemps", meilleurTemps);
@@ -31,7 +32,7 @@ function montreMeilleurTemps(){
 	seconds = (seconds < 10) ? "0" + seconds : seconds;
 	milliseconds = (milliseconds < 100) ? (milliseconds < 10) ? "00" + milliseconds : "0" + milliseconds : milliseconds;
 	console.log("hours"+hours);
-	document.getElementById("tempsABattre").innerHTML = "Meilleur temps :" + hours + ':' + minutes + ':' + seconds + ':' + milliseconds;
+	document.getElementById("tempsABattre").innerHTML = "" + hours + ':' + minutes + ':' + seconds + ':' + milliseconds;
 }
 
 function razMeilleurTemps() {
