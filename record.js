@@ -1,15 +1,20 @@
 var meilleurTemps;
-var event = new Event("meilleurTemps");
+document.addEventListener('DOMContentLoaded', function() {
+	//console.log(localStorage);
 
-
-//console.log(localStorage);
-if(localStorage.getItem("meilleurTemps")) {
-	meilleurTemps = localStorage.getItem("meilleurTemps");
-} else {
-	razMeilleurTemps();
-}
-montreMeilleurTemps();
-//console.log(meilleurTemps);
+	if(localStorage.getItem("meilleurTemps")) {
+		meilleurTemps = localStorage.getItem("meilleurTemps");
+	} else {
+		razMeilleurTemps();
+	}
+	if(localStorage.getItem("mode")) {
+		mode = localStorage.getItem("mode");
+		modeMAJ(mode);
+	} else {
+		modeMAJ('defaut');
+	}
+	montreMeilleurTemps();
+}, false);
 
 function sauveMeilleurTemps() {
 	if (savedTime < meilleurTemps) {
@@ -39,4 +44,8 @@ function razMeilleurTemps() {
 	meilleurTemps = 11000002;
 	localStorage.setItem("meilleurTemps", meilleurTemps);
 	montreMeilleurTemps();
+}
+
+function sauveMode(val) {
+	localStorage.setItem("mode", val);
 }

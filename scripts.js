@@ -1,5 +1,7 @@
 const npaires = 6;
 const ncards = npaires*2;
+var timeFlip=500;
+var timeWait=500
 
 var images = [
 'rdt45.svg', 'rlt45.svg', // tour
@@ -33,8 +35,10 @@ document.addEventListener('DOMContentLoaded', function() {
   			mem_card.dataset.framework=images[i];
 			recto_img.className="front-face";
 			recto_img.src="img/"+images[i];
+			recto_img.setAttribute('draggable', false);
 			verso_img.className="back-face";
 			verso_img.src="img/logo_me.svg";
+			verso_img.setAttribute('draggable', false);
 			mem_card.appendChild(recto_img);
 			mem_card.appendChild(verso_img);
 
@@ -42,10 +46,10 @@ document.addEventListener('DOMContentLoaded', function() {
 			mem_card.style.order = randomPos;
 			mem_card.addEventListener('click', flipCard);
 			mem_game.appendChild(mem_card);
-//			console.log('adding');
-//			console.log(mem_card);
 		}
 	}
+	document.getElementById('modeSelector').appendChild(menuModeFactory());
+	document.getElementById('modeSelector').appendChild(buttonValidModeFactory());
 }, false);
 
 let hasFlippedCard = false;
@@ -98,6 +102,7 @@ function disableCards() {
 }
 
 function unflipCards() {
+	timeout=timeFlip*2+timeWait;
   lockBoard = true;
 
   setTimeout(() => {
@@ -105,7 +110,7 @@ function unflipCards() {
     secondCard.classList.remove('flip');
 
     resetBoard();
-  }, 1500);
+  }, timeout);
 }
 
 function resetBoard() {

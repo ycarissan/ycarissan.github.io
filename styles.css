@@ -11,13 +11,14 @@ body {
 }
 
 .memory-game {
-/*  width: 640px;
+  width: 640px;
     height: 640px;
-*/
+/*
   width: calc(100% - 30px);
   height: 100%;
-/*  margin: auto;*/
-  float: right;
+*/
+  margin: auto;
+/*  float: right;*/
   display: flex;
   flex-wrap: wrap;
   perspective: 1000px;
@@ -61,3 +62,4 @@ body {
 .front-face {
   transform: rotateY(180deg);
 }
+
