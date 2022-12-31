@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+
+		<title>Vision Game</title>
+
+		<link rel="preconnect" href="https://fonts.googleapis.com">
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+		<link href="https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@1,800&display=swap" rel="stylesheet">
+		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300">
+		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Orbitron:600">
+		<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css" integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz" crossorigin="anonymous">
+		<link rel="stylesheet" href="stopWatch.css">
+		<link rel="stylesheet" href="default.css">
+
+	</head>
+	<body>
+		<div class="flex-container">
+		<div id="timerContainer">
+			<div class="timer">Cliquer sur la bonne case</div>
+			<div class="timer" id="tempsABattre">   </div>
+			<div class="timer"> 
+				<div>
+					<button onclick="document.location.reload(true)"><i class="fas fa-redo fa-4x"></i></button>
+					<button onclick="razMeilleurTemps()"><i class="fas fa-trash-alt fa-4x"></i></button>
+					<button onclick="music.playing() ? music.pause() : music.play()"><i class="fas fa-pause fa-4x"></i></button>
+				</div>
+			</div>
+		</div>
+			<div class="coords-game">
+				<table class="echiquier">
+					<tr>
+						<td><div class="case blanche cachee prevent-select">ii</div></td>
+						<td><div class="case noire cachee prevent-select">ii</div></td>
+						<td><div class="case blanche cachee prevent-select">ii</div></td>
+						<td><div class="case noire cachee prevent-select">ii</div></td>
+						<td><div class="case blanche cachee prevent-select">ii</div></td>
+						<td><div class="case noire cachee prevent-select">ii</div></td>
+						<td><div class="case blanche cachee prevent-select">ii</div></td>
+						<td><div class="case noire cachee prevent-select">ii</div></td>
+					</tr>
+					<tr>
+						<td><div class="case noire cachee prevent-select">ii</div></td>
+						<td><div class="case blanche cachee prevent-select">ii</div></td>
+						<td><div class="case noire cachee prevent-select">ii</div></td>
+						<td><div class="case blanche cachee prevent-select">ii</div>
+							<div id="cible" class="cible prevent-select"></div></td>
+						<td><div class="case noire cachee prevent-select">ii</div></td>
+						<td><div class="case blanche cachee prevent-select">ii</div></td>
+						<td><div class="case noire cachee prevent-select">ii</div></td>
+						<td><div class="case blanche cachee prevent-select">ii</div></td>
+					</tr>
+					<tr>
+						<td><div class="case blanche cachee prevent-select">ii</div></td>
+						<td><div class="case noire cachee prevent-select">ii</div></td>
+						<td><div class="case blanche cachee prevent-select">ii</div></td>
+						<td><div class="case noire cachee prevent-select">ii</div></td>
+						<td><div class="case blanche cachee prevent-select">ii</div></td>
+						<td><div class="case noire cachee prevent-select">ii</div></td>
+						<td><div class="case blanche cachee prevent-select">ii</div></td>
+						<td><div class="case noire cachee prevent-select">ii</div></td>
+					</tr>
+					<tr>
+						<td><div class="case noire cachee prevent-select">ii</div></td>
+						<td><div class="case blanche cachee prevent-select">ii</div></td>
+						<td><div class="case noire cachee prevent-select">ii</div></td>
+						<td><div class="case blanche cachee prevent-select">ii</div></td>
+						<td><div class="case noire cachee prevent-select">ii</div></td>
+						<td><div class="case blanche cachee prevent-select">ii</div></td>
+						<td><div class="case noire cachee prevent-select">ii</div></td>
+						<td><div class="case blanche cachee prevent-select">ii</div></td>
+					</tr>
+					<tr>
+						<td><div class="case blanche cachee prevent-select">ii</div></td>
+						<td><div class="case noire cachee prevent-select">ii</div></td>
+						<td><div class="case blanche cachee prevent-select">ii</div></td>
+						<td><div class="case noire cachee prevent-select">ii</div></td>
+						<td><div class="case blanche cachee prevent-select">ii</div></td>
+						<td><div class="case noire cachee prevent-select">ii</div></td>
+						<td><div class="case blanche cachee prevent-select">ii</div></td>
+						<td><div class="case noire cachee prevent-select">ii</div></td>
+					</tr>
+					<tr>
+						<td><div class="case noire cachee prevent-select">ii</div></td>
+						<td><div class="case blanche cachee prevent-select">ii</div></td>
+						<td><div class="case noire cachee prevent-select">ii</div></td>
+						<td><div class="case blanche cachee prevent-select">ii</div></td>
+						<td><div class="case noire cachee prevent-select">ii</div></td>
+						<td><div class="case blanche cachee prevent-select">ii</div></td>
+						<td><div class="case noire cachee prevent-select">ii</div></td>
+						<td><div class="case blanche cachee prevent-select">ii</div></td>
+					</tr>
+					<tr>
+						<td><div class="case blanche cachee prevent-select">ii</div></td>
+						<td><div class="case noire cachee prevent-select">ii</div></td>
+						<td><div class="case blanche cachee prevent-select">ii</div></td>
+						<td><div class="case noire cachee prevent-select">ii</div></td>
+						<td><div class="case blanche cachee prevent-select">ii</div></td>
+						<td><div class="case noire cachee prevent-select">ii</div></td>
+						<td><div class="case blanche cachee prevent-select">ii</div></td>
+						<td><div class="case noire cachee prevent-select">ii</div></td>
+					</tr>
+					<tr>
+						<td><div class="case noire cachee prevent-select">ii</div></td>
+						<td><div class="case blanche cachee prevent-select">ii</div></td>
+						<td><div class="case noire cachee prevent-select">ii</div></td>
+						<td><div class="case blanche cachee prevent-select">ii</div></td>
+						<td><div class="case noire cachee prevent-select">ii</div></td>
+						<td><div class="case blanche cachee prevent-select">ii</div></td>
+						<td><div class="case noire cachee prevent-select">ii</div></td>
+						<td><div class="case blanche cachee prevent-select">ii</div></td>
+					</tr>
+				</table>
+			</div>
+			<table>
+				<tr> <td>Trouvées : </td><td><div id="ok"></div></td></tr>
+				<tr> <td>Ratées   : </td><td><div id="notok"></div></td></tr>
+				<tr> <td>Combo    : </td><td><div id="combo"></div></td></tr>
+			</table>
+		</div>
+
+		<script type="text/javascript" src="stopWatch.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
+		<script src="https://cdn.jsdelivr.net/npm/party-js@latest/bundle/party.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/howler/2.2.3/howler.min.js"></script>
+		<script src="scripts.js"></script>
+
+	</body>
+</html>

@@ -1,0 +1,54 @@
+.coords-game {
+	margin: 0;
+}
+
+.case {
+	height: 50px;
+	width: 50px;
+	display: flex;
+	border: 1pt;
+	background-color: red;
+	justify-content: center;
+	align-items: center;
+}
+
+.blanche {
+	color: AntiqueWhite;
+	background-color: AntiqueWhite;
+}
+
+.noire {
+	color: SandyBrown;
+	background-color: SandyBrown;
+}
+
+.trouvee {
+}
+
+.flex-container {
+	display: flex;
+	background-color: white;
+	flex-direction: column;
+}
+
+.echiquier {
+	border-spacing: 0pt;
+	margin: 0px;
+}
+
+.cible {
+	position: absolute;
+	z-index: 100;
+	font-family: 'Noto Sans', sans-serif;
+	font-weight: 800;
+	font-size: 100px;
+	opacity: 0.5;
+	color: gray;
+	pointer-events: none;
+}
+
+.prevent-select {
+	-webkit-user-select: none; /* Safari */
+	-ms-user-select: none; /* IE 10 and IE 11 */
+	user-select: none; /* Standard syntax */
+}
