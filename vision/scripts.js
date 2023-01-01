@@ -138,7 +138,7 @@ window.onload = function (){
 	setTarget(cible)
 	idx=0;
 	cases.forEach(unecase => unecase.addEventListener('click', checkForMatch));
-	cases.forEach(unecase => unecase.addEventListener('touchstart', checkForMatch));
+//	cases.forEach(unecase => unecase.addEventListener('touchstart', checkForMatch));
 	var soundok = new Howl({
 		src: ['GameBurp/success_pickup.ogg'],
 	});
