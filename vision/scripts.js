@@ -1,3 +1,4 @@
+var musiquefond;
 window.onload = function (){
 	const cases = document.querySelectorAll('.case');
 	const ncases = cases.length;
@@ -155,6 +156,8 @@ window.onload = function (){
 		autoplay: true,
 		loop: true,
 		volume: 0.5,
-	});music.play()
+	});
+	music.play()
+	musiquefond = music;
 	init();
 }
