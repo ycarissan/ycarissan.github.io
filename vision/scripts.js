@@ -18,28 +18,35 @@ window.onload = function (){
 	const pieces = ["pion", "cavalier", "fou", "tour", "dame", "roi"];
 
 
+	function update_score() {
+		strok=ok;
+		strnotok=notok;
+		strcombo=combo;
+		if (ok<10) {
+			strok="  "+ok;
+		}
+		if (notok<10) {
+			strnotok="  "+notok;
+		}
+		if (combo<10) {
+			strcombo="  "+combo;
+		}
+		document.getElementById("score").innerHTML="&#x2705; "+strok+"  &#x274E; "+strnotok +"  &#x1F31F; "+strcombo;
+	}
+
 	function add_notok() {
 		notok = notok + 1;
-		document.getElementById("notok").innerHTML=notok;
+		update_score();
 	}
 
 	function add_ok() {
 		ok = ok + 1;
-		document.getElementById("ok").innerHTML=ok;
+		update_score();
 	}
 
 	function add_combo() {
 		combo = combo + 1;
-		document.getElementById("combo").innerHTML=combo;
-		if (combo==2) {
-			console.log('combo!!');
-			anime({
-				target: cases,
-				duration: 5000,
-				rotate: '2turn',
-				easing: 'easeInOutQuad',
-			});
-		}
+		update_score();
 	}
 
 	function setTarget(t) {
@@ -51,7 +58,11 @@ window.onload = function (){
 		soundok.play();
 		add_combo();
 		console.log(Math.floor(combo/8));
-		party.confetti(element, {shapes: pieces[Math.floor(combo/8)], count: combo, size: 1});
+		party.confetti(element, {
+			shapes: pieces[Math.floor(combo/8)],
+			count: combo,
+			size: party.variation.range(0.5, 2.0),
+		});
 		anime({
 			targets: element,
 			rotate: '1turn',
@@ -112,6 +123,7 @@ window.onload = function (){
 
 		if (cachees.length==0) {
 			console.log("termine!!!");
+			soundfinal.play();
 			party.confetti(this);
 
 		}
@@ -134,6 +146,9 @@ window.onload = function (){
 	});
 	var soundup = new Howl({
 		src: ['mixit/mixkit-melodic-bonus-collect-1938.wav'],
+	});
+	var soundfinal = new Howl({
+		src: ['mixit/mixkit-medieval-show-fanfare-announcement-226.wav'],
 	});
 	var music = new Howl({
 		src: ['music/SkyeJordan_-_Good_(Blissful)_Morning_Alice_1.mp3'],

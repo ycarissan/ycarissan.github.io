@@ -16,108 +16,93 @@
 
 	</head>
 	<body>
-		<div class="flex-container">
+		<div id="conteneurGlobal" class="flex-container">
 		<div id="timerContainer">
 			<div class="timer">Cliquer sur la bonne case</div>
 			<div class="timer" id="tempsABattre">   </div>
 			<div class="timer"> 
 				<div>
-					<button onclick="document.location.reload(true)"><i class="fas fa-redo fa-4x"></i></button>
-					<button onclick="razMeilleurTemps()"><i class="fas fa-trash-alt fa-4x"></i></button>
-					<button onclick="music.playing() ? music.pause() : music.play()"><i class="fas fa-pause fa-4x"></i></button>
+					<div id="score"></div>
+					<button onclick="document.location.reload(true)"><i class="fas fa-redo fa-2x"></i></button>
+					<button onclick="razMeilleurTemps()"><i class="fas fa-trash-alt fa-2x"></i></button>
+					<button onclick="music.playing() ? music.pause() : music.play()"><i class="fas fa-pause fa-2x"></i></button>
 				</div>
 			</div>
 		</div>
 			<div class="coords-game">
-				<table class="echiquier">
-					<tr>
-						<td><div class="case blanche cachee prevent-select">ii</div></td>
-						<td><div class="case noire cachee prevent-select">ii</div></td>
-						<td><div class="case blanche cachee prevent-select">ii</div></td>
-						<td><div class="case noire cachee prevent-select">ii</div></td>
-						<td><div class="case blanche cachee prevent-select">ii</div></td>
-						<td><div class="case noire cachee prevent-select">ii</div></td>
-						<td><div class="case blanche cachee prevent-select">ii</div></td>
-						<td><div class="case noire cachee prevent-select">ii</div></td>
-					</tr>
-					<tr>
-						<td><div class="case noire cachee prevent-select">ii</div></td>
-						<td><div class="case blanche cachee prevent-select">ii</div></td>
-						<td><div class="case noire cachee prevent-select">ii</div></td>
-						<td><div class="case blanche cachee prevent-select">ii</div>
-							<div id="cible" class="cible prevent-select"></div></td>
-						<td><div class="case noire cachee prevent-select">ii</div></td>
-						<td><div class="case blanche cachee prevent-select">ii</div></td>
-						<td><div class="case noire cachee prevent-select">ii</div></td>
-						<td><div class="case blanche cachee prevent-select">ii</div></td>
-					</tr>
-					<tr>
-						<td><div class="case blanche cachee prevent-select">ii</div></td>
-						<td><div class="case noire cachee prevent-select">ii</div></td>
-						<td><div class="case blanche cachee prevent-select">ii</div></td>
-						<td><div class="case noire cachee prevent-select">ii</div></td>
-						<td><div class="case blanche cachee prevent-select">ii</div></td>
-						<td><div class="case noire cachee prevent-select">ii</div></td>
-						<td><div class="case blanche cachee prevent-select">ii</div></td>
-						<td><div class="case noire cachee prevent-select">ii</div></td>
-					</tr>
-					<tr>
-						<td><div class="case noire cachee prevent-select">ii</div></td>
-						<td><div class="case blanche cachee prevent-select">ii</div></td>
-						<td><div class="case noire cachee prevent-select">ii</div></td>
-						<td><div class="case blanche cachee prevent-select">ii</div></td>
-						<td><div class="case noire cachee prevent-select">ii</div></td>
-						<td><div class="case blanche cachee prevent-select">ii</div></td>
-						<td><div class="case noire cachee prevent-select">ii</div></td>
-						<td><div class="case blanche cachee prevent-select">ii</div></td>
-					</tr>
-					<tr>
-						<td><div class="case blanche cachee prevent-select">ii</div></td>
-						<td><div class="case noire cachee prevent-select">ii</div></td>
-						<td><div class="case blanche cachee prevent-select">ii</div></td>
-						<td><div class="case noire cachee prevent-select">ii</div></td>
-						<td><div class="case blanche cachee prevent-select">ii</div></td>
-						<td><div class="case noire cachee prevent-select">ii</div></td>
-						<td><div class="case blanche cachee prevent-select">ii</div></td>
-						<td><div class="case noire cachee prevent-select">ii</div></td>
-					</tr>
-					<tr>
-						<td><div class="case noire cachee prevent-select">ii</div></td>
-						<td><div class="case blanche cachee prevent-select">ii</div></td>
-						<td><div class="case noire cachee prevent-select">ii</div></td>
-						<td><div class="case blanche cachee prevent-select">ii</div></td>
-						<td><div class="case noire cachee prevent-select">ii</div></td>
-						<td><div class="case blanche cachee prevent-select">ii</div></td>
-						<td><div class="case noire cachee prevent-select">ii</div></td>
-						<td><div class="case blanche cachee prevent-select">ii</div></td>
-					</tr>
-					<tr>
-						<td><div class="case blanche cachee prevent-select">ii</div></td>
-						<td><div class="case noire cachee prevent-select">ii</div></td>
-						<td><div class="case blanche cachee prevent-select">ii</div></td>
-						<td><div class="case noire cachee prevent-select">ii</div></td>
-						<td><div class="case blanche cachee prevent-select">ii</div></td>
-						<td><div class="case noire cachee prevent-select">ii</div></td>
-						<td><div class="case blanche cachee prevent-select">ii</div></td>
-						<td><div class="case noire cachee prevent-select">ii</div></td>
-					</tr>
-					<tr>
-						<td><div class="case noire cachee prevent-select">ii</div></td>
-						<td><div class="case blanche cachee prevent-select">ii</div></td>
-						<td><div class="case noire cachee prevent-select">ii</div></td>
-						<td><div class="case blanche cachee prevent-select">ii</div></td>
-						<td><div class="case noire cachee prevent-select">ii</div></td>
-						<td><div class="case blanche cachee prevent-select">ii</div></td>
-						<td><div class="case noire cachee prevent-select">ii</div></td>
-						<td><div class="case blanche cachee prevent-select">ii</div></td>
-					</tr>
-				</table>
+						<div class="case blanche cachee prevent-select" style="grid-column:1">ii</div>
+						<div class="case noire cachee prevent-select" style="grid-column:2">ii</div>
+						<div class="case blanche cachee prevent-select" style="grid-column:3">ii</div>
+						<div class="case noire cachee prevent-select" style="grid-column:4">ii</div>
+						<div class="case blanche cachee prevent-select" style="grid-column:5">ii</div>
+						<div class="case noire cachee prevent-select" style="grid-column:6">ii</div>
+						<div class="case blanche cachee prevent-select" style="grid-column:7">ii</div>
+						<div class="case noire cachee prevent-select" style="grid-column:8">ii</div>
+
+						<div class="case noire cachee prevent-select">ii</div>
+						<div class="case blanche cachee prevent-select">ii</div>
+						<div class="case noire cachee prevent-select">ii</div>
+						<div class="case blanche cachee prevent-select">ii</div>
+							<div id="cible" class="cible prevent-select"></div>
+						<div class="case noire cachee prevent-select">ii</div>
+						<div class="case blanche cachee prevent-select">ii</div>
+						<div class="case noire cachee prevent-select">ii</div>
+						<div class="case blanche cachee prevent-select">ii</div>
+
+						<div class="case blanche cachee prevent-select">ii</div>
+						<div class="case noire cachee prevent-select">ii</div>
+						<div class="case blanche cachee prevent-select">ii</div>
+						<div class="case noire cachee prevent-select">ii</div>
+						<div class="case blanche cachee prevent-select">ii</div>
+						<div class="case noire cachee prevent-select">ii</div>
+						<div class="case blanche cachee prevent-select">ii</div>
+						<div class="case noire cachee prevent-select">ii</div>
+
+						<div class="case noire cachee prevent-select">ii</div>
+						<div class="case blanche cachee prevent-select">ii</div>
+						<div class="case noire cachee prevent-select">ii</div>
+						<div class="case blanche cachee prevent-select">ii</div>
+						<div class="case noire cachee prevent-select">ii</div>
+						<div class="case blanche cachee prevent-select">ii</div>
+						<div class="case noire cachee prevent-select">ii</div>
+						<div class="case blanche cachee prevent-select">ii</div>
+
+						<div class="case blanche cachee prevent-select">ii</div>
+						<div class="case noire cachee prevent-select">ii</div>
+						<div class="case blanche cachee prevent-select">ii</div>
+						<div class="case noire cachee prevent-select">ii</div>
+						<div class="case blanche cachee prevent-select">ii</div>
+						<div class="case noire cachee prevent-select">ii</div>
+						<div class="case blanche cachee prevent-select">ii</div>
+						<div class="case noire cachee prevent-select">ii</div>
+
+						<div class="case noire cachee prevent-select">ii</div>
+						<div class="case blanche cachee prevent-select">ii</div>
+						<div class="case noire cachee prevent-select">ii</div>
+						<div class="case blanche cachee prevent-select">ii</div>
+						<div class="case noire cachee prevent-select">ii</div>
+						<div class="case blanche cachee prevent-select">ii</div>
+						<div class="case noire cachee prevent-select">ii</div>
+						<div class="case blanche cachee prevent-select">ii</div>
+
+						<div class="case blanche cachee prevent-select">ii</div>
+						<div class="case noire cachee prevent-select">ii</div>
+						<div class="case blanche cachee prevent-select">ii</div>
+						<div class="case noire cachee prevent-select">ii</div>
+						<div class="case blanche cachee prevent-select">ii</div>
+						<div class="case noire cachee prevent-select">ii</div>
+						<div class="case blanche cachee prevent-select">ii</div>
+						<div class="case noire cachee prevent-select">ii</div>
+
+						<div class="case noire cachee prevent-select">ii</div>
+						<div class="case blanche cachee prevent-select">ii</div>
+						<div class="case noire cachee prevent-select">ii</div>
+						<div class="case blanche cachee prevent-select">ii</div>
+						<div class="case noire cachee prevent-select">ii</div>
+						<div class="case blanche cachee prevent-select">ii</div>
+						<div class="case noire cachee prevent-select">ii</div>
+						<div class="case blanche cachee prevent-select">ii</div>
 			</div>
-			<table>
-				<tr> <td>Trouvées : </td><td><div id="ok"></div></td></tr>
-				<tr> <td>Ratées   : </td><td><div id="notok"></div></td></tr>
-				<tr> <td>Combo    : </td><td><div id="combo"></div></td></tr>
-			</table>
 		</div>
 
 		<script type="text/javascript" src="stopWatch.js"></script>
