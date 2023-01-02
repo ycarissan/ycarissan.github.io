@@ -20,13 +20,12 @@
 		<div id="timerContainer">
 			<div class="timer">Cliquer sur la bonne case</div>
 			<div class="timer" id="tempsABattre">   </div>
-			<div class="timer"> 
-				<div>
-					<div id="score"></div>
-					<button onclick="document.location.reload(true)"><i class="fas fa-redo fa-2x"></i></button>
-					<button onclick="razMeilleurTemps()"><i class="fas fa-trash-alt fa-2x"></i></button>
-					<button onclick="musiquefond.playing() ? musiquefond.pause() : musiquefond.play()"><i class="fas fa-pause fa-2x"></i></button>
-				</div>
+			<div class="vision_haute"> 
+				<div id="modeSelector"></div>
+				<div id="score"></div>
+				<button onclick="document.location.reload(true)"><i class="fas fa-redo fa-2x"></i></button>
+				<button onclick="razMeilleurTemps()"><i class="fas fa-trash-alt fa-2x"></i></button>
+				<button onclick="musiquefond.playing() ? musiquefond.pause() : musiquefond.play()"><i class="fas fa-pause fa-2x"></i></button>
 			</div>
 		</div>
 			<div class="coords-game">
@@ -43,7 +42,7 @@
 						<div class="case blanche cachee prevent-select">ii</div>
 						<div class="case noire cachee prevent-select">ii</div>
 						<div class="case blanche cachee prevent-select">ii</div>
-							<div id="cible" class="cible prevent-select"></div>
+							<div id="affichage_cible" class="affichage_cible prevent-select"></div>
 						<div class="case noire cachee prevent-select">ii</div>
 						<div class="case blanche cachee prevent-select">ii</div>
 						<div class="case noire cachee prevent-select">ii</div>
@@ -109,6 +108,8 @@
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
 		<script src="https://cdn.jsdelivr.net/npm/party-js@latest/bundle/party.min.js"></script>
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/howler/2.2.3/howler.min.js"></script>
+		<script src="modes.js"></script>
+		<script src="record.js"></script>
 		<script src="scripts.js"></script>
 
 	</body>

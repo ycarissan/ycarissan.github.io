@@ -52,7 +52,13 @@ window.onload = function (){
 
 	function setTarget(t) {
 		cible=t;
-		document.getElementById("cible").innerHTML=t;
+		document.getElementById("affichage_cible").innerHTML=t;
+		cases.forEach(unecase => {
+			if (unecase.innerHTML==cible){
+				unecase.classList.toggle("cible");
+				unecase.classList.toggle("clignote");
+			}
+		});
 	}
 
 	function do_combo(element) {
@@ -64,11 +70,7 @@ window.onload = function (){
 			count: combo,
 			size: party.variation.range(0.5, 2.0),
 		});
-		anime({
-			targets: element,
-			rotate: '1turn',
-			duration: 2000
-		});
+		element.classList.toggle("tourne1");
 		if (combo%8 == 0) {
 			trouvees = document.getElementsByClassName("trouvee");
 			anime.remove(trouvees);
@@ -91,9 +93,17 @@ window.onload = function (){
 		party.resolvableShapes["tour"] = `<img src="img/rdt45.png"/>`;
 		party.resolvableShapes["dame"] = `<img src="img/qlt45.png"/>`;
 		party.resolvableShapes["roi"] = `<img src="img/kdt45.png"/>`;
+		document.getElementById('modeSelector').appendChild(menuModeFactory());
+		document.getElementById('modeSelector').appendChild(buttonValidModeFactory());
 		add_ok();
 		add_notok();
 		add_combo();
+		var tinterval=10;
+		cases.forEach(unecase => setTimeout(() => unecase.classList.toggle('tourne1'),tinterval+=10));
+//		cases.forEach(unecase => {
+//			var tinterval=1000;
+//			setInterval(() => unecase.classList.toggle('tourne1'),tinterval+=100)
+//		});
 	}
 
 	function checkForMatch() {
@@ -107,6 +117,7 @@ window.onload = function (){
 		//succesful click
 		if (cible==this.innerHTML) {
 			this.classList.toggle("trouvee");
+			this.classList.toggle("cible");
 			this.classList.toggle("cachee");
 			add_ok();
 			do_combo(this);
@@ -140,7 +151,6 @@ window.onload = function (){
 	setTarget(cible)
 	idx=0;
 	cases.forEach(unecase => unecase.addEventListener('click', checkForMatch));
-//	cases.forEach(unecase => unecase.addEventListener('touchstart', checkForMatch));
 	var soundok = new Howl({
 		src: ['GameBurp/success_pickup.ogg'],
 	});

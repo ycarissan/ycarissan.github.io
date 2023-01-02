@@ -5,9 +5,9 @@ body{
 
 #conteneurGlobal {
 	width: 100%;
-	height: 90%
-	top: 0;
-	left: 0;
+	height: 100%;
+	margin:0;
+	box-sizing: border-box;
 }
 
 .coords-game {
@@ -18,8 +18,8 @@ body{
 }
 
 .case {
-	width: 12vw;
-	height: 12vw;
+	width: 12.5vw;
+	height: 12.5vw;
 	max-width: 100px;
 	max-height: 100px;
 	display: flex;
@@ -53,18 +53,25 @@ body{
 	margin: 0px;
 }
 
-.cible {
+.affichage_cible {
 	position: absolute;
 	z-index: 100;
 	font-family: 'Noto Sans', sans-serif;
 	font-weight: 800;
-	font-size: min(30vw,400px);
+	font-size: 30vw;
 	opacity: 0.5;
-	color: gray;
 	pointer-events: none;
 	top: 50%;
 	left: 50%;
 	transform: translate(-50%, -50%);
+	color: gray;
+}
+
+.cible {
+	font-family: 'Noto Sans', sans-serif;
+	font-weight: 800;
+	font-size: 2em;
+	opacity: 1.0;
 }
 
 .prevent-select {
@@ -75,4 +82,64 @@ body{
 
 .valeur {
 	display: inline-block;
+}
+
+/* The animation code */
+@keyframes clignote {
+	50% {
+		background-color: red;
+		color:gray;
+	}
+}
+
+@keyframes tourne1 {
+	100% {transform: rotate(1turn);}
+}
+
+@keyframes tourne2 {
+	100% {transform: rotate(2turn);}
+}
+
+.clignote {
+	animation-name: clignote;
+	animation-duration: 3s;
+	animation-delay: 2s;
+	animation-iteration-count: infinite;
+}
+
+.tourne1 {
+	animation-name: tourne1;
+	animation-duration: 1s;
+	animation-delay: 0s;
+	animation-iteration-count: 1;
+}
+
+.tourne2 {
+	animation-name: tourne2;
+	animation-duration: 1s;
+	animation-delay: 0s;
+	animation-iteration-count: 1;
+}
+
+.vision_haute {
+  width: 100%;
+  padding: 0;
+  font-size: 2em;
+  text-align:center;
+  color: #fff;
+  background: #1C7CCC;
+  cursor: pointer;
+  display: flex;
+}
+
+.vision_haute>div {
+	margin: auto;
+}
+
+.vision_haute>button:last-child {
+	margin-right: auto;
+}
+
+#modeSelector>* {
+	font-size: 1em;
 }
