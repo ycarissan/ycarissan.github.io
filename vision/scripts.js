@@ -85,12 +85,12 @@ window.onload = function (){
 	}
 
 	function init() {
-		party.resolvableShapes["pion"] = `<img src="/img/plt45.png"/>`;
-		party.resolvableShapes["cavalier"] = `<img src="/img/ndt45.png"/>`;
-		party.resolvableShapes["fou"] = `<img src="/img/blt45.png"/>`;
-		party.resolvableShapes["tour"] = `<img src="/img/rdt45.png"/>`;
-		party.resolvableShapes["dame"] = `<img src="/img/qlt45.png"/>`;
-		party.resolvableShapes["roi"] = `<img src="/img/kdt45.png"/>`;
+		party.resolvableShapes["pion"] = `<img src="img/plt45.png"/>`;
+		party.resolvableShapes["cavalier"] = `<img src="img/ndt45.png"/>`;
+		party.resolvableShapes["fou"] = `<img src="img/blt45.png"/>`;
+		party.resolvableShapes["tour"] = `<img src="img/rdt45.png"/>`;
+		party.resolvableShapes["dame"] = `<img src="img/qlt45.png"/>`;
+		party.resolvableShapes["roi"] = `<img src="img/kdt45.png"/>`;
 		add_ok();
 		add_notok();
 		add_combo();
@@ -123,6 +123,8 @@ window.onload = function (){
 
 
 		if (cachees.length==0) {
+			pauseTimer();
+			sauveMeilleurTemps();
 			console.log("termine!!!");
 			soundfinal.play();
 			party.confetti(this);
