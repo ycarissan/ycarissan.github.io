@@ -100,6 +100,8 @@ window.onload = function (){
 		add_combo();
 		var tinterval=10;
 		cases.forEach(unecase => setTimeout(() => unecase.classList.toggle('tourne1'),tinterval+=10));
+		var tinterval=10;
+		cases.forEach(unecase => setTimeout(() => unecase.classList.toggle('tourne1'),tinterval+=10));
 //		cases.forEach(unecase => {
 //			var tinterval=1000;
 //			setInterval(() => unecase.classList.toggle('tourne1'),tinterval+=100)
