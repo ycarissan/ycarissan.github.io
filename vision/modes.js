@@ -1,4 +1,4 @@
-var modes=["Mini", "PoleEspoir", "Nationale", "TopJeune"]
+var modes=["Mini", "Espoir", "Top"]
 var select = document.createElement('select');
 
 function menuModeFactory() {

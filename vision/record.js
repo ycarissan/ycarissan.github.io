@@ -49,3 +49,7 @@ function razMeilleurTemps() {
 function sauveMode(val) {
 	localStorage.setItem("mode", val);
 }
+
+function lireMode() {
+	return localStorage.getItem("mode");
+}

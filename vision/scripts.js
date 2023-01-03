@@ -55,7 +55,7 @@ window.onload = function (){
 		cases.forEach(unecase => {
 			if (unecase.innerHTML==cible){
 				unecase.classList.toggle("cible");
-				if (getMode()=="Mini") {
+				if (lireMode()=="Mini") {
 					unecase.classList.toggle("clignote");
 				}
 			}
@@ -110,12 +110,13 @@ window.onload = function (){
 	}
 
 	function checkForMatch() {
+		console.log(lireMode());
 
 		//first click
 		if (!running) {
 			startTimer();
 			select.disabled = true;
-			if (getMode()=="TopJeune") {
+			if (lireMode()=="Top") {
 				element = document.getElementsByClassName("coords-game").item(0);
 				console.log(element);
 				setInterval(() => element.classList.toggle('tourne1_2'),10100);
