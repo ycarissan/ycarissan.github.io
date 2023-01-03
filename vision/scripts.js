@@ -18,7 +18,6 @@ window.onload = function (){
 	];
 	const pieces = ["pion", "cavalier", "fou", "tour", "dame", "roi"];
 
-
 	function update_score() {
 		strok=ok;
 		strnotok=notok;
@@ -56,7 +55,9 @@ window.onload = function (){
 		cases.forEach(unecase => {
 			if (unecase.innerHTML==cible){
 				unecase.classList.toggle("cible");
-				unecase.classList.toggle("clignote");
+				if (getMode()=="Mini") {
+					unecase.classList.toggle("clignote");
+				}
 			}
 		});
 	}
@@ -100,7 +101,7 @@ window.onload = function (){
 		add_combo();
 		var tinterval=10;
 		cases.forEach(unecase => setTimeout(() => unecase.classList.toggle('tourne1'),tinterval+=10));
-		var tinterval=10;
+		tinterval=10;
 		cases.forEach(unecase => setTimeout(() => unecase.classList.toggle('tourne1'),tinterval+=10));
 //		cases.forEach(unecase => {
 //			var tinterval=1000;
@@ -110,8 +111,19 @@ window.onload = function (){
 
 	function checkForMatch() {
 
+		//first click
 		if (!running) {
 			startTimer();
+			select.disabled = true;
+			if (getMode()=="TopJeune") {
+				element = document.getElementsByClassName("coords-game").item(0);
+				console.log(element);
+				setInterval(() => element.classList.toggle('tourne1_2'),10100);
+				setInterval(() => {
+					caseSurprise = cases[Math.floor(Math.random()*cachees.length)];
+					caseSurprise.classList.toggle("surprise");
+				},800);
+			}
 		}
 
 		cachees = document.getElementsByClassName("cachee");
@@ -123,6 +135,7 @@ window.onload = function (){
 			this.classList.toggle("cachee");
 			add_ok();
 			do_combo(this);
+			this.classList.toggle("inactive");
 			// remove the square found from the square to be found
 			cachees = document.getElementsByClassName("cachee");
 			if (cachees.length!=0) {
@@ -141,7 +154,7 @@ window.onload = function (){
 			console.log("termine!!!");
 			soundfinal.play();
 			party.confetti(this);
-
+			select.disabled = false;
 		}
 
 

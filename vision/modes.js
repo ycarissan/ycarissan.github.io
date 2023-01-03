@@ -24,31 +24,11 @@ function buttonValidModeFactory() {
 	return button;
 }
 
+function getMode() {
+	return select.value;
+}
+
 function modeMAJ(val){
 	console.log(val);
 	sauveMode(val);
-	switch(val){
-		case 'TopJeune':
-			timeFlip=0;
-			timeWait=100;
-			break;
-		case 'Nationale':
-			timeFlip=50;
-			timeWait=100;
-			break;
-		case 'PoleEspoir':
-			timeFlip=100;
-			timeWait=100;
-			break;
-		case 'Mini':
-		default:
-			timeFlip=500;
-			timeWait=500;
-			break;
-
-	}
-	const cards = document.querySelectorAll(".memory-card");
-	cards.forEach(card => {
-		card.style.transitionDuration = (timeFlip/1000) + "s";
-	});
 }
