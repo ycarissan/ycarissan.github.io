@@ -11,6 +11,8 @@ body {
 }
 
 .memory-game {
+  --cols: 4;
+  --rows: 4;
   width: 640px;
   height: 640px;
   margin: auto;
@@ -20,12 +22,8 @@ body {
 }
 
 .memory-card {
-  width: calc(25% - 10px);
-  height: calc(33.333% - 10px);
-/*
-  width: 180px;
-  height: 180px;
-*/
+  width: calc(100% / var(--cols) - 10px);
+  height: calc(100% / var(--rows) - 10px);
   margin: 5px;
   position: relative;
   transform: scale(1);
@@ -56,4 +54,60 @@ body {
 
 .front-face {
   transform: rotateY(180deg);
+}
+
+.config-modal {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(6, 10, 178, 0.88);
+  z-index: 100;
+  justify-content: center;
+  align-items: center;
+}
+
+.config-modal.open {
+  display: flex;
+}
+
+.config-panel {
+  background: #1C7CCC;
+  border-radius: 12px;
+  padding: 40px;
+  text-align: center;
+  color: white;
+}
+
+.config-panel h2 {
+  margin-bottom: 25px;
+  font-family: 'Orbitron', sans-serif;
+  font-size: 1.4em;
+  letter-spacing: 2px;
+}
+
+.config-buttons {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.config-buttons button {
+  padding: 14px 22px;
+  font-size: 1.1em;
+  font-family: 'Orbitron', sans-serif;
+  background: #060AB2;
+  color: white;
+  border: 2px solid rgba(255,255,255,0.4);
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.15s;
+  min-width: 80px;
+}
+
+.config-buttons button:hover,
+.config-buttons button.active {
+  background: white;
+  color: #060AB2;
+  border-color: white;
 }
