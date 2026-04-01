@@ -14,7 +14,7 @@ let lockBoard = false;
 let firstCard, secondCard;
 let ncards = 0;
 let currentCols = 4;
-let currentRows = 4;
+let currentRows = 3;
 let flipDuration = 0.3;
 let unflipDelay = 800;
 
@@ -136,4 +136,4 @@ function selectSize(cols, rows) {
   initGame(cols, rows);
 }
 
-initGame(4, 4);
+initGame(4, 3);
