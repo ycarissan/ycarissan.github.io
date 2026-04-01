@@ -47,7 +47,7 @@ function startTimer(){
   paused = 0;
   running = 0;
   timerDisplay.innerHTML = 'Cliquer sur une carte';
-  timerDisplay.style.background = "#A90000";
+  timerDisplay.style.background = "#1C7CCC";
   timerDisplay.style.color = "#fff";
   timerDisplay.style.cursor = "pointer";
 //  startTimerButton.classList.remove('lighter');
