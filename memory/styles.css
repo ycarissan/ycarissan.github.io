@@ -14,6 +14,7 @@ body {
   --cols: 4;
   --rows: 4;
   --flip-duration: 0.3s;
+  --card-padding: 20px;
   width: 640px;
   height: 640px;
   margin: auto;
@@ -46,7 +47,7 @@ body {
 .back-face {
   width: 100%;
   height: auto;
-  padding: 20px;
+  padding: var(--card-padding);
   position: absolute;
   border-radius: 5px;
   background: radial-gradient(#ffffff, #1C7CCC);

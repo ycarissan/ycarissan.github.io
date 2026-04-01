@@ -30,6 +30,8 @@ function initGame(cols, rows) {
   gameEl.style.setProperty('--cols', cols);
   gameEl.style.setProperty('--rows', rows);
   gameEl.style.setProperty('--flip-duration', flipDuration + 's');
+  const padding = cols >= 8 ? '0px' : cols >= 6 ? '10px' : '20px';
+  gameEl.style.setProperty('--card-padding', padding);
 
   const numPairs = (cols * rows) / 2;
   const shuffled = [...allImages].sort(() => Math.random() - 0.5);
