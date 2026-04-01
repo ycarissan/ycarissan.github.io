@@ -57,7 +57,8 @@ function unflipCards() {
     secondCard.classList.remove('flip');
 
     resetBoard();
-  }, 1500);
+  }, 50);
+  /*Temps pour voir les cartes avant de les retourner, 1500 pour 1.5 secondes, etc.*/
 }
 
 function resetBoard() {
