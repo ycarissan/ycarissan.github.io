@@ -18,7 +18,7 @@
 		<div class="timer">
 			<div>
 				<button onclick="openConfig()"><i class="fas fa-cog fa-4x"></i></button>
-				<button onclick="document.location.reload(true)"><i class="fas fa-redo fa-4x"></i></button>
+				<button onclick="restartGame()"><i class="fas fa-redo fa-4x"></i></button>
 				<button onclick="razMeilleurTemps()"><i class="fas fa-trash-alt fa-4x"></i></button>
 			</div>
 		</div>
@@ -32,6 +32,16 @@
         <button id="btn-4x4" onclick="selectSize(4,4)" class="active">4×4</button>
         <button id="btn-6x6" onclick="selectSize(6,6)">6×6</button>
         <button id="btn-8x8" onclick="selectSize(8,8)">8×8</button>
+      </div>
+      <div class="config-sliders">
+        <label>Animation retournement : <span id="flipDurationVal">0.30s</span>
+          <input type="range" min="0.05" max="1.5" step="0.05" value="0.3"
+                 oninput="updateFlipDuration(this.value)">
+        </label>
+        <label>Délai avant retournement : <span id="unflipDelayVal">800ms</span>
+          <input type="range" min="0" max="3000" step="100" value="800"
+                 oninput="updateUnflipDelay(this.value)">
+        </label>
       </div>
     </div>
   </div>

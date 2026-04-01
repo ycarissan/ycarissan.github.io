@@ -13,12 +13,23 @@ let hasFlippedCard = false;
 let lockBoard = false;
 let firstCard, secondCard;
 let ncards = 0;
+let currentCols = 4;
+let currentRows = 4;
+let flipDuration = 0.3;
+let unflipDelay = 800;
+
+function restartGame() {
+  initGame(currentCols, currentRows);
+}
 
 function initGame(cols, rows) {
+  currentCols = cols;
+  currentRows = rows;
   const gameEl = document.querySelector('.memory-game');
   gameEl.innerHTML = '';
   gameEl.style.setProperty('--cols', cols);
   gameEl.style.setProperty('--rows', rows);
+  gameEl.style.setProperty('--flip-duration', flipDuration + 's');
 
   const numPairs = (cols * rows) / 2;
   const shuffled = [...allImages].sort(() => Math.random() - 0.5);
@@ -92,7 +103,7 @@ function unflipCards() {
     firstCard.classList.remove('flip');
     secondCard.classList.remove('flip');
     resetBoard();
-  }, 50);
+  }, unflipDelay);
 }
 
 function resetBoard() {
@@ -102,6 +113,17 @@ function resetBoard() {
 
 function openConfig() {
   document.getElementById('configModal').classList.add('open');
+}
+
+function updateFlipDuration(val) {
+  flipDuration = parseFloat(val);
+  document.getElementById('flipDurationVal').textContent = parseFloat(val).toFixed(2) + 's';
+  document.querySelector('.memory-game').style.setProperty('--flip-duration', flipDuration + 's');
+}
+
+function updateUnflipDelay(val) {
+  unflipDelay = parseInt(val);
+  document.getElementById('unflipDelayVal').textContent = val + 'ms';
 }
 
 function selectSize(cols, rows) {
