@@ -21,11 +21,13 @@
 				<button onclick="restartGame()"><i class="fas fa-redo fa-4x"></i></button>
 				<button onclick="razMeilleurTemps()"><i class="fas fa-trash-alt fa-4x"></i></button>
 			</div>
+			<div class="version">v2026.04.01-11:36</div>
 		</div>
 	</div>
 
   <div id="configModal" class="config-modal">
     <div class="config-panel">
+      <button class="config-close" onclick="document.getElementById('configModal').classList.remove('open')">✕</button>
       <h2>Taille du jeu</h2>
       <div class="config-buttons">
         <button id="btn-2x2" onclick="selectSize(2,2)">2×2</button>
