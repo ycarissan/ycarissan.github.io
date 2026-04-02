@@ -12,6 +12,7 @@ create table scores (
 	id bigint generated always as identity primary key,
 	username text,
 	score integer not null,
+	size text,
 	timestamp timestamptz default now(),
 	device_id text,
 	verified boolean default false,

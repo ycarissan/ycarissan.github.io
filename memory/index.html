@@ -25,6 +25,35 @@
 		</div>
 	</div>
 
+  <div id="leaderboard" class="leaderboard">
+    <h3>Classement <span class="lb-size-tag" id="lbSizeTag">4×3</span></h3>
+    <div class="lb-section">
+      <div class="lb-section-title">Meilleur de tous les temps</div>
+      <div id="allTimeScore" class="lb-alltime">—</div>
+    </div>
+    <div class="lb-section">
+      <div class="lb-section-title">Top 3 du mois</div>
+      <ol id="leaderboardList"><li class="lb-loading">Chargement…</li></ol>
+    </div>
+    <div class="lb-footer">
+      <button class="lb-btn" onclick="refreshLeaderboard()">&#8635; Actualiser</button>
+    </div>
+    <div id="leaderboardStatus" class="lb-status"></div>
+  </div>
+
+  <div id="nameModal" class="name-modal">
+    <div class="name-panel">
+      <div class="name-trophy">&#127942;</div>
+      <h2>Nouveau record&nbsp;!</h2>
+      <p class="name-subtitle">Entrez votre nom pour enregistrer votre score</p>
+      <input type="text" id="nameInput" class="name-input" placeholder="Votre nom" maxlength="30" />
+      <div class="name-buttons">
+        <button class="name-btn-skip" onclick="submitPlayerName(null)">Passer</button>
+        <button class="name-btn-ok" onclick="submitPlayerName()">Valider</button>
+      </div>
+    </div>
+  </div>
+
   <div id="configModal" class="config-modal">
     <div class="config-panel">
       <button class="config-close" onclick="document.getElementById('configModal').classList.remove('open')">✕</button>
