@@ -17,19 +17,15 @@ function formatTime(ms) {
 const medals = ['🥇', '🥈', '🥉'];
 
 async function loadBoard(size, listEl) {
-  const now = new Date();
-  const firstOfMonth = new Date(now.getFullYear(), now.getMonth(), 1).toISOString();
-
   const { data, error } = await db
     .from('scores')
-    .select('username, score, created_at')
+    .select('username, score')
     .eq('size', String(size))
-    .gte('created_at', firstOfMonth)
     .order('score', { ascending: true })
     .limit(5);
 
   if (error || !data || data.length === 0) {
-    listEl.innerHTML = '<li class="empty">Aucun score ce mois-ci</li>';
+    listEl.innerHTML = '<li class="empty">Aucun score</li>';
     return;
   }
 
