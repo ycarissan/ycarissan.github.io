@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Salle des Trophées — Marseille-Echecs</title>
+  <link rel="icon" type="image/svg+xml" href="../memory/img/logo_me.svg">
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;900&family=Raleway:wght@300;400;600&family=Orbitron:wght@700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="trophees.css">
+</head>
+<body>
+
+  <span class="chess-deco">♛</span>
+  <span class="chess-deco">♜</span>
+  <span class="chess-deco">♞</span>
+  <span class="chess-deco">♝</span>
+
+  <header>
+    <a class="back-link" href="../index.html">← Accueil</a>
+    <div class="logo-ring">
+      <img src="../memory/img/logo2-0-2_orig.jpg" alt="Logo Marseille-Echecs">
+    </div>
+    <h1>Salle des Trophées</h1>
+    <p class="subtitle">Les meilleurs scores du club</p>
+    <div class="divider"></div>
+  </header>
+
+  <main>
+    <section class="trophy-section">
+      <h2 class="game-title">🧠 Memory</h2>
+      <div class="boards-grid" id="memoryBoards">
+        <div class="board-card" data-game="memory" data-size="4">
+          <div class="board-label">4×4</div>
+          <ol class="trophy-list" id="memory-4"><li class="loading">Chargement…</li></ol>
+        </div>
+        <div class="board-card" data-game="memory" data-size="6">
+          <div class="board-label">6×6</div>
+          <ol class="trophy-list" id="memory-6"><li class="loading">Chargement…</li></ol>
+        </div>
+        <div class="board-card" data-game="memory" data-size="8">
+          <div class="board-label">8×8</div>
+          <ol class="trophy-list" id="memory-8"><li class="loading">Chargement…</li></ol>
+        </div>
+      </div>
+    </section>
+
+    <section class="trophy-section">
+      <h2 class="game-title">♞ Vision</h2>
+      <div class="boards-grid" id="visionBoards">
+        <div class="board-card" data-game="vision" data-size="Mini">
+          <div class="board-label">Mini</div>
+          <ol class="trophy-list" id="vision-Mini"><li class="loading">Chargement…</li></ol>
+        </div>
+        <div class="board-card" data-game="vision" data-size="Espoir">
+          <div class="board-label">Espoir</div>
+          <ol class="trophy-list" id="vision-Espoir"><li class="loading">Chargement…</li></ol>
+        </div>
+        <div class="board-card" data-game="vision" data-size="Top">
+          <div class="board-label">Top</div>
+          <ol class="trophy-list" id="vision-Top"><li class="loading">Chargement…</li></ol>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>Club de Marseille &mdash; Echecs</footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="trophees.js"></script>
+</body>
+</html>

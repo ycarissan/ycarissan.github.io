@@ -1,0 +1,204 @@
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --blue:      #5B8DB8;
+  --blue-dark: #2E5F84;
+  --blue-deep: #1A3A52;
+  --gold:      #C9961D;
+  --gold-light:#E8B840;
+  --white:     #F8F9FA;
+  --shadow:    rgba(30, 60, 90, 0.25);
+}
+
+body {
+  min-height: 100vh;
+  background: linear-gradient(160deg, var(--blue-deep) 0%, #0d2235 40%, #1a1a2e 100%);
+  font-family: 'Raleway', sans-serif;
+  color: var(--white);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 32px 16px 64px;
+}
+
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image: repeating-conic-gradient(rgba(255,255,255,0.03) 0% 25%, transparent 0% 50%);
+  background-size: 60px 60px;
+  pointer-events: none;
+}
+
+/* ── Decorative pieces ── */
+.chess-deco {
+  position: fixed;
+  font-size: clamp(4rem, 12vw, 10rem);
+  opacity: 0.04;
+  pointer-events: none;
+  user-select: none;
+}
+.chess-deco:nth-child(1) { top: -2%  ; left:  2%; transform: rotate(-15deg); }
+.chess-deco:nth-child(2) { top: 10% ; right: 3%; transform: rotate(12deg);  }
+.chess-deco:nth-child(3) { bottom: 5%; left:  5%; transform: rotate(8deg);  }
+.chess-deco:nth-child(4) { bottom: 8%; right: 2%; transform: rotate(-10deg);}
+
+/* ── Back link ── */
+.back-link {
+  align-self: flex-start;
+  margin-bottom: 24px;
+  color: var(--blue);
+  text-decoration: none;
+  font-size: 0.8rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  opacity: 0.8;
+  transition: opacity 0.2s;
+}
+.back-link:hover { opacity: 1; }
+
+/* ── Header ── */
+header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 48px;
+  position: relative;
+  z-index: 1;
+}
+
+.logo-ring {
+  width: 80px; height: 80px;
+  border-radius: 50%;
+  border: 2px solid var(--gold);
+  overflow: hidden;
+  box-shadow: 0 0 20px rgba(201,150,29,0.3);
+}
+.logo-ring img { width: 100%; height: 100%; object-fit: cover; }
+
+h1 {
+  font-family: 'Cinzel', serif;
+  font-size: clamp(1.4rem, 4vw, 2.2rem);
+  font-weight: 900;
+  background: linear-gradient(135deg, var(--gold-light), var(--gold));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  letter-spacing: 0.06em;
+}
+
+.subtitle {
+  font-size: 0.8rem;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--blue);
+  opacity: 0.8;
+}
+
+.divider {
+  width: 120px; height: 2px;
+  background: linear-gradient(90deg, transparent, var(--gold), transparent);
+}
+
+/* ── Main ── */
+main {
+  width: 100%;
+  max-width: 860px;
+  display: flex;
+  flex-direction: column;
+  gap: 48px;
+  position: relative;
+  z-index: 1;
+}
+
+.trophy-section {}
+
+.game-title {
+  font-family: 'Cinzel', serif;
+  font-size: 1.3rem;
+  color: var(--gold-light);
+  margin-bottom: 20px;
+  letter-spacing: 0.06em;
+  border-bottom: 1px solid rgba(201,150,29,0.25);
+  padding-bottom: 10px;
+}
+
+.boards-grid {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.board-card {
+  flex: 1;
+  min-width: 200px;
+  background: linear-gradient(145deg, rgba(91,141,184,0.12), rgba(26,58,82,0.55));
+  border: 1px solid rgba(91,141,184,0.25);
+  border-radius: 12px;
+  padding: 20px 16px;
+  backdrop-filter: blur(8px);
+}
+
+.board-label {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 0.85rem;
+  color: var(--gold);
+  letter-spacing: 0.1em;
+  margin-bottom: 14px;
+  text-align: center;
+}
+
+.trophy-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.trophy-list li {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.82rem;
+}
+
+.trophy-list .medal {
+  font-size: 1rem;
+  flex-shrink: 0;
+  width: 22px;
+  text-align: center;
+}
+
+.trophy-list .player {
+  flex: 1;
+  color: var(--white);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.trophy-list .time {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 0.72rem;
+  color: var(--gold-light);
+  flex-shrink: 0;
+}
+
+.trophy-list .loading,
+.trophy-list .empty {
+  color: rgba(255,255,255,0.35);
+  font-style: italic;
+  font-size: 0.8rem;
+}
+
+/* ── Footer ── */
+footer {
+  margin-top: 56px;
+  font-size: 0.7rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: rgba(91,141,184,0.4);
+  position: relative;
+  z-index: 1;
+}
