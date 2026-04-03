@@ -6,6 +6,7 @@ window.onload = function (){
 	var combo = -1;
 	var ok = -1;
 	var notok = -1;
+	var gameOver = false;
 
 	const coords = ["a8", "b8", "c8", "d8", "e8", "f8", "g8", "h8",
 		"a7", "b7", "c7", "d7", "e7", "f7", "g7", "h7",
@@ -17,6 +18,13 @@ window.onload = function (){
                 "a1", "b1", "c1", "d1", "e1", "f1", "g1", "h1"
 	];
 	const pieces = ["pion", "cavalier", "fou", "tour", "dame", "roi"];
+
+	function getTargetCount() {
+		const mode = lireMode();
+		if (mode === 'Mini')   return 10;
+		if (mode === 'Espoir') return 32;
+		return 64; // Top
+	}
 
 	function update_score() {
 		strok=ok;
@@ -31,7 +39,8 @@ window.onload = function (){
 		if (combo<10) {
 			strcombo="  "+combo;
 		}
-		document.getElementById("score").innerHTML="&#x2705; "+strok+"  &#x274E; "+strnotok +"  &#x1F31F; "+strcombo;
+		const target = getTargetCount();
+		document.getElementById("score").innerHTML="&#x2705; "+strok+"  &#x274E; "+strnotok +"  &#x1F31F; "+strcombo+"/"+target;
 	}
 
 	function add_notok() {
@@ -55,9 +64,6 @@ window.onload = function (){
 		cases.forEach(unecase => {
 			if (unecase.innerHTML==cible){
 				unecase.classList.toggle("cible");
-				if (lireMode()=="Mini") {
-					unecase.classList.toggle("clignote");
-				}
 			}
 		});
 	}
@@ -87,6 +93,69 @@ window.onload = function (){
 
 	}
 
+	const startPos = {
+		'a8':'rdt45.svg','b8':'ndt45.svg','c8':'bdt45.svg','d8':'qdt45.svg','e8':'kdt45.svg','f8':'bdt45.svg','g8':'ndt45.svg','h8':'rdt45.svg',
+		'a7':'pdt45.svg','b7':'pdt45.svg','c7':'pdt45.svg','d7':'pdt45.svg','e7':'pdt45.svg','f7':'pdt45.svg','g7':'pdt45.svg','h7':'pdt45.svg',
+		'a2':'plt45.svg','b2':'plt45.svg','c2':'plt45.svg','d2':'plt45.svg','e2':'plt45.svg','f2':'plt45.svg','g2':'plt45.svg','h2':'plt45.svg',
+		'a1':'rlt45.svg','b1':'nlt45.svg','c1':'blt45.svg','d1':'qlt45.svg','e1':'klt45.svg','f1':'blt45.svg','g1':'nlt45.svg','h1':'rlt45.svg',
+	};
+
+	function buildBoardLabels() {
+		const wrapper = document.querySelector('.board-wrapper');
+		const files = ['a','b','c','d','e','f','g','h'];
+		const ranks = ['8','7','6','5','4','3','2','1'];
+
+		const rowBottom = document.createElement('div');
+		rowBottom.className = 'board-labels files bottom';
+		files.forEach(f => {
+			const el = document.createElement('span');
+			el.textContent = f;
+			rowBottom.appendChild(el);
+		});
+		wrapper.appendChild(rowBottom);
+
+		const colLeft = document.createElement('div');
+		colLeft.className = 'board-labels ranks left';
+		ranks.forEach(r => {
+			const el = document.createElement('span');
+			el.textContent = r;
+			colLeft.appendChild(el);
+		});
+		wrapper.appendChild(colLeft);
+	}
+
+	function placePieces() {
+		const mode = lireMode();
+		cases.forEach(unecase => {
+			const coord = unecase.innerHTML;
+			if (mode === 'Mini' && startPos[coord]) {
+				unecase.style.backgroundImage = `url('../memory/img/${startPos[coord]}')`;
+				unecase.style.backgroundSize = '75%';
+				unecase.style.backgroundRepeat = 'no-repeat';
+				unecase.style.backgroundPosition = 'center';
+			} else {
+				unecase.style.backgroundImage = '';
+			}
+		});
+		const wrapper = document.querySelector('.board-wrapper');
+		if (mode === 'Mini' || mode === 'Espoir') {
+			wrapper.classList.add('show-coords');
+		} else {
+			wrapper.classList.remove('show-coords');
+		}
+	}
+	window.placePieces = placePieces;
+
+	function updateCaseSize() {
+		const headerHeight = document.getElementById('timerContainer').offsetHeight;
+		const availableH = window.innerHeight - headerHeight;
+		const availableW = window.innerWidth;
+		const boardSize = Math.min(availableW, availableH, 800);
+		const caseSize = Math.floor(boardSize / 8);
+		document.documentElement.style.setProperty('--case-size', caseSize + 'px');
+	}
+	window.addEventListener('resize', updateCaseSize);
+
 	function init() {
 		party.resolvableShapes["pion"] = `<img src="img/plt45.png"/>`;
 		party.resolvableShapes["cavalier"] = `<img src="img/ndt45.png"/>`;
@@ -107,14 +176,19 @@ window.onload = function (){
 //			var tinterval=1000;
 //			setInterval(() => unecase.classList.toggle('tourne1'),tinterval+=100)
 //		});
+		buildBoardLabels();
+		placePieces();
+		updateCaseSize();
 	}
 
 	function checkForMatch() {
+		if (gameOver) return;
 		console.log(lireMode());
 
 		//first click
 		if (!running) {
 			startTimer();
+			hideLeaderboard();
 			select.disabled = true;
 			if (lireMode()=="Top") {
 				element = document.getElementsByClassName("coords-game").item(0);
@@ -146,12 +220,22 @@ window.onload = function (){
 			add_notok();
 			combo=0;
 			soundfail.play();
+			// Remettre toutes les cases trouvées dans le pool
+			document.querySelectorAll('.trouvee').forEach(c => {
+				c.classList.remove('trouvee', 'inactive');
+				c.classList.add('cachee');
+			});
+			cachees = document.getElementsByClassName("cachee");
+			setTarget(cachees[Math.floor(Math.random()*cachees.length)].textContent);
 		}
 
-
-		if (cachees.length==0) {
+		if (combo >= getTargetCount()) {
+			gameOver = true;
+			document.getElementById("affichage_cible").innerHTML = '';
+			cases.forEach(c => c.classList.remove('cible', 'clignote'));
 			pauseTimer();
 			sauveMeilleurTemps();
+			showLeaderboard();
 			console.log("termine!!!");
 			soundfinal.play();
 			party.confetti(this);

@@ -1,20 +1,50 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
   <meta charset="UTF-8">
-
-  <title>Menu</title>
-
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300">
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Orbitron:600">
-  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css" integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz" crossorigin="anonymous">
-  <link rel="stylesheet" href="stopWatch.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Marseille-Echecs — Jeux</title>
+  <link rel="icon" type="image/svg+xml" href="memory/img/logo_me.svg">
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;900&family=Raleway:wght@300;400;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-	Menu<br>
-	<a href="memory/index.html">Memory</a><br>
-<a href="vision/index.html">Vision</a>
+
+  <!-- Decorative chess pieces -->
+  <span class="chess-deco">♞</span>
+  <span class="chess-deco">♜</span>
+  <span class="chess-deco">♛</span>
+  <span class="chess-deco">♝</span>
+
+  <header>
+    <div class="logo-ring">
+      <img src="memory/img/logo2-0-2_orig.jpg" alt="Logo Marseille-Echecs">
+    </div>
+    <h1>Marseille-Echecs</h1>
+    <p class="subtitle">Jeux d'entraînement</p>
+    <div class="divider"></div>
+  </header>
+
+  <nav>
+    <a href="memory/index.html" class="card">
+      <div class="card-icon card-icon--memory">
+        <img src="memory/img/qlt45.svg" alt="reine blanche">
+        <img src="memory/img/qdt45.svg" alt="reine noire">
+      </div>
+      <div class="card-title">Memory</div>
+      <p class="card-desc">Retrouve les paires de pièces d'échecs. Entraîne ta mémoire visuelle.</p>
+      <span class="card-arrow">Jouer →</span>
+    </a>
+
+    <a href="vision/index.html" class="card">
+      <div class="card-icon">♞</div>
+      <div class="card-title">Vision</div>
+      <p class="card-desc">Identifie rapidement les cases de l'échiquier. Améliore ta vision du jeu.</p>
+      <span class="card-arrow">Jouer →</span>
+    </a>
+  </nav>
+
+  <footer>Club de Marseille &mdash; Echecs</footer>
+
 </body>
 </html>
-
