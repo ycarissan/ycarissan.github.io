@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Run — Marseille-Échecs</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600&family=Raleway:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css" crossorigin="anonymous">
+  <link rel="stylesheet" href="../vision/stopWatch.css">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <script>if (!localStorage.getItem('lastPlayerName')) window.location.href = '../index.html';</script>
+
+  <div id="conteneurGlobal">
+
+    <!-- Header / Timer -->
+    <div id="timerContainer">
+      <div class="timer" id="timerDisplay">Prêt — cliquer pour jouer</div>
+      <div class="timer" id="tempsABattre"> </div>
+      <div class="run-header">
+        <div id="levelSelector"></div>
+        <div id="moveCounter"></div>
+        <button onclick="document.location.reload(true)" title="Nouveau puzzle"><i class="fas fa-redo fa-2x"></i></button>
+        <button onclick="razMeilleurTemps()" title="Effacer record"><i class="fas fa-trash-alt fa-2x"></i></button>
+      </div>
+    </div>
+
+    <!-- Game area -->
+    <div class="game-area">
+
+      <!-- Leaderboard (slides from top) -->
+      <div id="leaderboard" class="leaderboard lb-collapsed">
+        <div class="lb-header">
+          <span class="lb-title">Classement</span>
+          <span class="lb-mode-tag" id="lbLevelTag">1 coup</span>
+          <button class="lb-refresh" onclick="refreshLeaderboard()" title="Rafraîchir">↻</button>
+        </div>
+        <div class="lb-alltime" id="allTimeScore">—</div>
+        <ol id="leaderboardList" class="lb-list"></ol>
+        <div class="lb-status" id="leaderboardStatus"></div>
+        <div class="lb-tab" onclick="toggleLeaderboard()">
+          <span class="lb-chevron">▼</span>
+          Scores <span id="lbLevelTagTab">1 coup</span>
+        </div>
+      </div>
+
+      <!-- Chess board -->
+      <div class="board-wrapper" id="boardWrapper">
+        <div class="board" id="board"></div>
+        <div class="board-labels files bottom" id="filesLabel"></div>
+        <div class="board-labels ranks left" id="ranksLabel"></div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Libraries -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/party-js@latest/bundle/party.min.js"></script>
+
+  <!-- Game scripts (order matters) -->
+  <script src="../vision/stopWatch.js"></script>
+  <script src="puzzles.js"></script>
+  <script src="modes.js"></script>
+  <script src="record.js"></script>
+  <script src="scripts.js"></script>
+
+</body>
+</html>

@@ -47,7 +47,9 @@ async function loadAllBoards() {
     { size: '8x8',   el: document.getElementById('memory-8x8') },
     { size: 'Mini',  el: document.getElementById('vision-Mini') },
     { size: 'Espoir',el: document.getElementById('vision-Espoir') },
-    { size: 'Top',   el: document.getElementById('vision-Top') },
+    { size: 'Top',    el: document.getElementById('vision-Top') },
+    { size: '1coup',  el: document.getElementById('run-1coup') },
+    { size: '2coups', el: document.getElementById('run-2coups') },
   ];
   await Promise.all(tasks.map(t => loadBoard(t.size, t.el)));
 }
