@@ -28,6 +28,7 @@
 				<button onclick="musiquefond.playing() ? musiquefond.pause() : musiquefond.play()"><i class="fas fa-pause fa-2x"></i></button>
 			</div>
 		</div>
+			<div class="board-wrapper">
 			<div class="coords-game">
 						<div class="case blanche cachee prevent-select" style="grid-column:1">ii</div>
 						<div class="case noire cachee prevent-select" style="grid-column:2">ii</div>
@@ -102,11 +103,46 @@
 						<div class="case noire cachee prevent-select">ii</div>
 						<div class="case blanche cachee prevent-select">ii</div>
 			</div>
+			</div><!-- end board-wrapper -->
 		</div>
+	<div id="leaderboard" class="leaderboard">
+		<h3>Classement <span class="lb-mode-tag" id="lbModeTag">Mini</span></h3>
+		<div class="lb-section">
+			<div class="lb-section-title">Meilleur de tous les temps</div>
+			<div id="allTimeScore" class="lb-alltime">—</div>
+		</div>
+		<div class="lb-section">
+			<div class="lb-section-title">Top 3 du mois</div>
+			<ol id="leaderboardList"><li class="lb-loading">Chargement…</li></ol>
+		</div>
+		<div class="lb-footer">
+			<button class="lb-btn" onclick="refreshLeaderboard()">&#8635; Actualiser</button>
+		</div>
+		<div id="leaderboardStatus" class="lb-status"></div>
+		<div class="lb-tab" onclick="toggleLeaderboard()">
+			<span>&#x1F3C6; Classement <span id="lbModeTagTab"></span></span>
+			<span class="lb-chevron">&#x25B2;</span>
+		</div>
+	</div>
+
+	<div id="nameModal" class="name-modal">
+		<div class="name-panel">
+			<div class="name-trophy">&#127942;</div>
+			<h2>Nouveau record&nbsp;!</h2>
+			<p class="name-subtitle">Entrez votre nom pour enregistrer votre score</p>
+			<input type="text" id="nameInput" class="name-input" placeholder="Votre nom" maxlength="30" />
+			<div class="name-buttons">
+				<button class="name-btn-skip" onclick="submitPlayerName(null)">Passer</button>
+				<button class="name-btn-ok" onclick="submitPlayerName()">Valider</button>
+			</div>
+		</div>
+	</div>
+
 		<script type="text/javascript" src="stopWatch.js"></script>
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
 		<script src="https://cdn.jsdelivr.net/npm/party-js@latest/bundle/party.min.js"></script>
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/howler/2.2.3/howler.min.js"></script>
+		<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js/dist/umd/supabase.min.js"></script>
 		<script src="modes.js"></script>
 		<script src="record.js"></script>
 		<script src="scripts.js"></script>

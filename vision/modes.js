@@ -1,34 +1,38 @@
-var modes=["Mini", "Espoir", "Top"]
-var select = document.createElement('select');
+var modes = ["Mini", "Espoir", "Top"];
+var select = { value: 'Mini' }; // kept for compatibility with getMode()
 
 function menuModeFactory() {
-	for(var i = 0; i < modes.length; i++) {
-		var opt = modes[i];
-		var el = document.createElement("option");
-		el.textContent = opt;
-		el.value = opt;
-		select.appendChild(el);
-	}
-	console.log(select);
-	return select;
+	const container = document.createElement('div');
+	container.className = 'mode-selector';
+	const current = lireMode() || 'Mini';
+	modes.forEach(function(m) {
+		const btn = document.createElement('button');
+		btn.className = 'mode-btn' + (m === current ? ' active' : '');
+		btn.textContent = m;
+		btn.dataset.mode = m;
+		btn.addEventListener('click', function() {
+			modeMAJ(m);
+		});
+		container.appendChild(btn);
+	});
+	return container;
 }
 
 function buttonValidModeFactory() {
-	var button=document.createElement("button");
-	button.innerHTML="ok";
-	button.addEventListener("click", function() {
-		console.log('select: '+select.value);
-		modeMAJ(select.value);
-	}
-	)
-	return button;
+	// No longer needed — mode changes instantly on click
+	return document.createDocumentFragment();
 }
 
 function getMode() {
 	return select.value;
 }
 
-function modeMAJ(val){
-	console.log(val);
+function modeMAJ(val) {
+	select.value = val;
 	sauveMode(val);
+	// Update active button
+	document.querySelectorAll('.mode-btn').forEach(function(btn) {
+		btn.classList.toggle('active', btn.dataset.mode === val);
+	});
+	if (typeof window.placePieces === 'function') window.placePieces();
 }
