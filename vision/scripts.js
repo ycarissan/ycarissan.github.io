@@ -40,7 +40,7 @@ window.onload = function (){
 			strcombo="  "+combo;
 		}
 		const target = getTargetCount();
-		document.getElementById("score").innerHTML="&#x2705; "+strok+"  &#x274E; "+strnotok +"  &#x1F31F; "+strcombo+"/"+target;
+		document.getElementById("score").innerHTML="&#x2705; "+strok+'  ⛔'+strnotok+"  &#x1F31F; "+strcombo+"/"+target;
 	}
 
 	function add_notok() {
