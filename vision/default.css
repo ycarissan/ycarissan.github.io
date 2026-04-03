@@ -71,12 +71,12 @@ body{
 }
 
 .blanche {
-	color: AntiqueWhite;
+	color: rgba(0,0,0,0);
 	background-color: AntiqueWhite;
 }
 
 .noire {
-	color: SandyBrown;
+	color: rgba(0,0,0,0);
 	background-color: SandyBrown;
 }
 
