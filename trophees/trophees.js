@@ -16,17 +16,16 @@ function formatTime(ms) {
 
 const medals = ['🥇', '🥈', '🥉'];
 
-async function loadBoard(game, size, listEl) {
+async function loadBoard(size, listEl) {
   const now = new Date();
   const firstOfMonth = new Date(now.getFullYear(), now.getMonth(), 1).toISOString();
 
   const { data, error } = await db
     .from('scores')
-    .select('player_name, time_ms, created_at')
-    .eq('game', game)
+    .select('username, score, created_at')
     .eq('size', String(size))
     .gte('created_at', firstOfMonth)
-    .order('time_ms', { ascending: true })
+    .order('score', { ascending: true })
     .limit(5);
 
   if (error || !data || data.length === 0) {
@@ -37,22 +36,24 @@ async function loadBoard(game, size, listEl) {
   listEl.innerHTML = data.map((row, i) =>
     `<li>
       <span class="medal">${medals[i] || (i + 1) + '.'}</span>
-      <span class="player">${row.player_name || 'Anonyme'}</span>
-      <span class="time">${formatTime(row.time_ms)}</span>
+      <span class="player">${row.username || 'Anonyme'}</span>
+      <span class="time">${formatTime(row.score)}</span>
     </li>`
   ).join('');
 }
 
 async function loadAllBoards() {
   const tasks = [
-    { game: 'memory', size: 4,       el: document.getElementById('memory-4') },
-    { game: 'memory', size: 6,       el: document.getElementById('memory-6') },
-    { game: 'memory', size: 8,       el: document.getElementById('memory-8') },
-    { game: 'vision', size: 'Mini',  el: document.getElementById('vision-Mini') },
-    { game: 'vision', size: 'Espoir',el: document.getElementById('vision-Espoir') },
-    { game: 'vision', size: 'Top',   el: document.getElementById('vision-Top') },
+    { size: '2x2',   el: document.getElementById('memory-2x2') },
+    { size: '4x3',   el: document.getElementById('memory-4x3') },
+    { size: '4x4',   el: document.getElementById('memory-4x4') },
+    { size: '6x6',   el: document.getElementById('memory-6x6') },
+    { size: '8x8',   el: document.getElementById('memory-8x8') },
+    { size: 'Mini',  el: document.getElementById('vision-Mini') },
+    { size: 'Espoir',el: document.getElementById('vision-Espoir') },
+    { size: 'Top',   el: document.getElementById('vision-Top') },
   ];
-  await Promise.all(tasks.map(t => loadBoard(t.game, t.size, t.el)));
+  await Promise.all(tasks.map(t => loadBoard(t.size, t.el)));
 }
 
 loadAllBoards();
