@@ -63,6 +63,8 @@ const _modeMAJ_orig = modeMAJ;
 modeMAJ = function(val) {
   _modeMAJ_orig(val);
   currentMode = val || 'Mini';
+  const targetCount = { Mini: 10, Espoir: 32, Top: 64 }[currentMode] || 64;
+  showPunchText(targetCount + ' cases\nà la suite');
   const tag = document.getElementById('lbModeTag');
   if (tag) tag.textContent = currentMode;
   const tagTab = document.getElementById('lbModeTagTab');
@@ -210,6 +212,16 @@ async function refreshLeaderboard() {
     const list = local ? [{ username: 'Local', score: Number(local) }] : [];
     renderLeaderboard(list, list[0] || null);
   }
+}
+
+function showPunchText(text) {
+  const el = document.getElementById('punchText');
+  if (!el) return;
+  el.textContent = text;
+  el.classList.remove('playing');
+  void el.offsetWidth;
+  el.classList.add('playing');
+  el.addEventListener('animationend', () => el.classList.remove('playing'), { once: true });
 }
 
 function showLeaderboard() {

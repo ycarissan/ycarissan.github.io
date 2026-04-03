@@ -145,6 +145,7 @@ window.onload = function (){
 		}
 	}
 	window.placePieces = placePieces;
+	window.update_score = update_score;
 
 	function updateCaseSize() {
 		const headerHeight = document.getElementById('timerContainer').offsetHeight;

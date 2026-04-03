@@ -35,4 +35,5 @@ function modeMAJ(val) {
 		btn.classList.toggle('active', btn.dataset.mode === val);
 	});
 	if (typeof window.placePieces === 'function') window.placePieces();
+	if (typeof window.update_score === 'function') window.update_score();
 }
