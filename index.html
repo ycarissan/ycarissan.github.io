@@ -16,14 +16,69 @@
   <span class="chess-deco">♛</span>
   <span class="chess-deco">♝</span>
 
+  <div id="pseudoModal" class="pseudo-modal">
+    <div class="pseudo-panel">
+      <div class="pseudo-icon">♞</div>
+      <h2>Bienvenue !</h2>
+      <p class="pseudo-subtitle">Choisissez votre pseudo pour commencer</p>
+      <input type="text" id="pseudoInput" class="pseudo-input" placeholder="Votre pseudo" maxlength="12" oninput="updatePseudoCounter()">
+      <div class="pseudo-counter"><span id="pseudoCount">0</span>/12</div>
+      <button class="pseudo-btn" onclick="savePseudo()">Jouer →</button>
+    </div>
+  </div>
+
   <header>
     <div class="logo-ring">
       <img src="memory/img/logo2-0-2_orig.jpg" alt="Logo Marseille-Echecs">
     </div>
     <h1>Marseille-Echecs</h1>
     <p class="subtitle">Jeux d'entraînement</p>
+    <div class="player-badge" id="playerBadge" onclick="editPseudo()" title="Changer de pseudo">
+      <span class="player-badge-icon">♟</span>
+      <span id="playerName"></span>
+      <span class="player-badge-edit">✎</span>
+    </div>
     <div class="divider"></div>
   </header>
+
+  <script>
+    function updatePseudoCounter() {
+      const len = document.getElementById('pseudoInput').value.length;
+      const el = document.getElementById('pseudoCount');
+      el.textContent = len;
+      el.style.color = len >= 10 ? '#E8B840' : '';
+    }
+    function checkPseudo() {
+      const name = localStorage.getItem('lastPlayerName');
+      if (!name) {
+        document.getElementById('pseudoModal').classList.add('open');
+        setTimeout(() => document.getElementById('pseudoInput').focus(), 50);
+      } else {
+        document.getElementById('playerName').textContent = name;
+        document.getElementById('playerBadge').style.display = 'flex';
+      }
+    }
+    function savePseudo() {
+      const val = document.getElementById('pseudoInput').value.trim();
+      if (!val) return;
+      localStorage.setItem('lastPlayerName', val);
+      document.getElementById('pseudoModal').classList.remove('open');
+      document.getElementById('playerName').textContent = val;
+      document.getElementById('playerBadge').style.display = 'flex';
+    }
+    function editPseudo() {
+      document.getElementById('pseudoInput').value = localStorage.getItem('lastPlayerName') || '';
+      updatePseudoCounter();
+      document.getElementById('pseudoModal').classList.add('open');
+      setTimeout(() => document.getElementById('pseudoInput').focus(), 50);
+    }
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Enter' && document.getElementById('pseudoModal').classList.contains('open')) {
+        savePseudo();
+      }
+    });
+    checkPseudo();
+  </script>
 
   <nav>
     <a href="memory/index.html" class="card">
