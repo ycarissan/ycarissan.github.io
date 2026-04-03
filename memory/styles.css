@@ -165,16 +165,43 @@ body {
 /* Leaderboard */
 .leaderboard {
   position: fixed;
-  right: 16px;
-  top: 16px;
+  left: 16px;
+  top: 0;
   width: 220px;
   background: rgba(0,0,0,0.45);
   border: 1px solid rgba(255,255,255,0.12);
+  border-top: none;
   color: white;
-  padding: 16px 16px 12px;
-  border-radius: 12px;
+  padding: 16px 16px 0;
+  border-radius: 0 0 12px 12px;
   font-family: 'Source Sans Pro', sans-serif;
   z-index: 10;
+  transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.leaderboard.lb-collapsed {
+  transform: translateY(calc(-100% + 34px));
+}
+.lb-tab {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  cursor: pointer;
+  padding: 7px 4px;
+  font-size: 0.78em;
+  font-family: 'Orbitron', sans-serif;
+  letter-spacing: 0.5px;
+  user-select: none;
+  border-top: 1px solid rgba(255,255,255,0.1);
+  margin-top: 12px;
+}
+.lb-tab:hover { color: rgba(255,255,255,0.8); }
+.lb-chevron {
+  transition: transform 0.4s;
+  font-size: 0.75em;
+  opacity: 0.7;
+}
+.leaderboard.lb-collapsed .lb-chevron {
+  transform: rotate(180deg);
 }
 .leaderboard h3 {
   font-family: 'Orbitron', sans-serif;

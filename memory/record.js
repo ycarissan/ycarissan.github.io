@@ -128,6 +128,8 @@ function renderLeaderboard(monthly, alltime) {
   // Update size tag
   const sizeTag = document.getElementById('lbSizeTag');
   if (sizeTag) sizeTag.textContent = currentSizeKey.replace('x', '×');
+  const sizeTagTab = document.getElementById('lbSizeTagTab');
+  if (sizeTagTab) sizeTagTab.textContent = currentSizeKey.replace('x', '×');
 
   // All-time best
   const atEl = document.getElementById('allTimeScore');
@@ -188,9 +190,20 @@ async function refreshLeaderboard() {
   }
 }
 
-// Refresh leaderboard on page load
+function showLeaderboard() {
+  document.getElementById('leaderboard').classList.remove('lb-collapsed');
+}
+function hideLeaderboard() {
+  document.getElementById('leaderboard').classList.add('lb-collapsed');
+}
+function toggleLeaderboard() {
+  document.getElementById('leaderboard').classList.toggle('lb-collapsed');
+}
+
+// Refresh leaderboard on page load + auto-hide after 2s
 document.addEventListener('DOMContentLoaded', function () {
   try { refreshLeaderboard(); } catch (e) { console.error(e); }
+  setTimeout(hideLeaderboard, 2000);
 });
 
 // --- Debug helper ---

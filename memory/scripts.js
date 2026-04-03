@@ -64,7 +64,7 @@ function initGame(cols, rows) {
 }
 
 function flipCard() {
-  if (!running) startTimer();
+  if (!running) { startTimer(); hideLeaderboard(); }
   if (lockBoard) return;
   if (this === firstCard) return;
 
@@ -94,6 +94,7 @@ function disableCards() {
   if (nfound === ncards) {
     pauseTimer();
     sauveMeilleurTemps();
+    showLeaderboard();
     party.confetti(secondCard);
   }
   resetBoard();
