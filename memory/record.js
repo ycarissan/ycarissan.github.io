@@ -50,18 +50,9 @@ function razMeilleurTemps() {
   montreMeilleurTemps();
 }
 
-// --- Player name modal ---
-let _nameResolve = null;
-
+// --- Player name ---
 function askPlayerName() {
-  return new Promise((resolve) => {
-    _nameResolve = resolve;
-    const stored = localStorage.getItem('lastPlayerName') || '';
-    const input = document.getElementById('nameInput');
-    if (input) input.value = stored;
-    document.getElementById('nameModal').classList.add('open');
-    setTimeout(() => { if (input) input.focus(); }, 50);
-  });
+  return Promise.resolve(localStorage.getItem('lastPlayerName') || 'Anonyme');
 }
 
 function submitPlayerName(override) {
