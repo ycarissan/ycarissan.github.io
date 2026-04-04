@@ -165,7 +165,7 @@ body {
 /* Leaderboard */
 .leaderboard {
   position: fixed;
-  left: 16px;
+  right: 16px;
   top: 0;
   width: 220px;
   background: rgba(0,0,0,0.45);
