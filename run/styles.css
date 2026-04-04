@@ -248,6 +248,10 @@ body {
 .leaderboard.lb-collapsed {
   transform: translateY(calc(-100% + 34px));
 }
+.leaderboard.lb-hidden {
+  transform: translateY(-100%);
+  pointer-events: none;
+}
 .lb-header {
   display: flex;
   align-items: center;

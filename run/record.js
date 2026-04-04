@@ -166,11 +166,11 @@ async function refreshLeaderboard() {
 
 function showLeaderboard() {
   const el = document.getElementById('leaderboard');
-  if (el) el.classList.remove('lb-collapsed');
+  if (el) el.classList.remove('lb-collapsed', 'lb-hidden');
 }
 function hideLeaderboard() {
   const el = document.getElementById('leaderboard');
-  if (el) el.classList.add('lb-collapsed');
+  if (el) el.classList.add('lb-hidden');
 }
 function toggleLeaderboard() {
   const el = document.getElementById('leaderboard');

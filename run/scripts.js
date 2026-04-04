@@ -163,6 +163,8 @@ let board = {};
 let playerSquare = null;
 let treasureSquare = null;
 let currentPuzzle = null;
+let puzzlesSolved = 0;
+const TARGET_PUZZLES = 10;
 let moveCount = 0;
 let gameStarted = false;
 let gameOver = false;
@@ -184,6 +186,50 @@ function buildBoard() {
       div.className = 'square ' + ((col + rank) % 2 === 0 ? 'sq-dark' : 'sq-light');
       div.dataset.square = sq;
       div.addEventListener('click', () => handleSquareClick(sq));
+
+      // Support du glisser-déposer
+      div.addEventListener('dragstart', (e) => {
+        if (sq !== playerSquare || gameOver) {
+          e.preventDefault();
+          return;
+        }
+        // Image de drag personnalisée pour éviter le fond bleu de la case
+        const p = board[sq];
+        if (p) {
+          // Créer un élément temporaire pour servir d'image fantôme agrandie
+          const ghost = document.createElement('div');
+          const size = 80; // Taille de la pièce pendant le drag (en pixels)
+          ghost.style.width = size + 'px';
+          ghost.style.height = size + 'px';
+          ghost.style.backgroundImage = `url('${PIECE_IMG_PATH}${p.type}${p.color}t45.svg')`;
+          ghost.style.backgroundSize = 'contain';
+          ghost.style.backgroundRepeat = 'no-repeat';
+          ghost.style.position = 'absolute';
+          ghost.style.top = '-1000px'; // On le place hors de l'écran
+          ghost.style.left = '-1000px';
+          document.body.appendChild(ghost);
+
+          // On définit cet élément comme image de drag
+          e.dataTransfer.setDragImage(ghost, size / 2, size / 2);
+
+          // On le retire du DOM immédiatement après (le navigateur a déjà pris sa capture)
+          setTimeout(() => document.body.removeChild(ghost), 0);
+        }
+        e.dataTransfer.setData('text/plain', sq);
+        e.dataTransfer.effectAllowed = 'move';
+      });
+      div.addEventListener('dragover', (e) => {
+        // On n'autorise le dépôt que sur les cases de destination valides
+        if (div.classList.contains('legal-dest')) {
+          e.preventDefault();
+          e.dataTransfer.dropEffect = 'move';
+        }
+      });
+      div.addEventListener('drop', (e) => {
+        e.preventDefault();
+        handleSquareClick(sq);
+      });
+
       boardEl.appendChild(div);
     });
   });
@@ -237,7 +283,13 @@ function renderBoard() {
       el.style.backgroundPosition = 'center';
     }
 
-    if (sq === playerSquare) el.classList.add('player-piece');
+    if (sq === playerSquare) {
+      el.classList.add('player-piece');
+      el.draggable = true;
+    } else {
+      el.draggable = false;
+    }
+
     if (sq === treasureSquare) {
       el.classList.add('treasure');
       const gem = document.createElement('div');
@@ -269,6 +321,7 @@ function updateMoveCounter() {
   const el = document.getElementById('moveCounter');
   if (!el || !currentPuzzle) return;
   el.textContent = 'Coups : ' + moveCount + ' / ' + currentPuzzle.minMoves + ' min';
+  el.textContent = `Puzzle ${puzzlesSolved + 1}/${TARGET_PUZZLES} | Coups : ${moveCount} / ${currentPuzzle.minMoves} min`;
 }
 
 // ─────────────────────────────────────────────────────────
@@ -276,14 +329,17 @@ function updateMoveCounter() {
 // ─────────────────────────────────────────────────────────
 
 function loadRandomPuzzle() {
+function loadRandomPuzzle(isNewSession = false) {
   const level = lireLevel();
   const pool = PUZZLES[level];
   if (!pool || pool.length === 0) return;
   const puzzle = pool[Math.floor(Math.random() * pool.length)];
   loadPuzzle(puzzle);
+  loadPuzzle(puzzle, isNewSession);
 }
 
 function loadPuzzle(puzzle) {
+function loadPuzzle(puzzle, isNewSession = false) {
   currentPuzzle = puzzle;
   board = {};
   moveCount = 0;
@@ -298,6 +354,16 @@ function loadPuzzle(puzzle) {
   clearInterval(tInterval);
   const timerEl = document.querySelector('.timer');
   if (timerEl) timerEl.innerHTML = 'Prêt — cliquer pour jouer';
+  if (isNewSession) {
+    puzzlesSolved = 0;
+    savedTime = 0;
+    difference = 0;
+    paused = 0;
+    running = 0;
+    clearInterval(tInterval);
+    const timerEl = document.querySelector('.timer');
+    if (timerEl) timerEl.innerHTML = 'Prêt — cliquer pour jouer';
+  }
 
   const p = puzzle.playerPiece;
   board[p.square] = { type: p.type, color: p.color, isPlayer: true };
@@ -376,10 +442,12 @@ function flashDanger(sq) {
 function handleWin() {
   gameOver = true;
   pauseTimer();
+  puzzlesSolved++;
 
   // Apply time penalty for extra moves
   const extraMoves = Math.max(0, moveCount - currentPuzzle.minMoves);
   savedTime = (savedTime || difference) + extraMoves * PENALTY_MS;
+  const penalty = extraMoves * PENALTY_MS;
 
   if (typeof party !== 'undefined') {
     const gem = document.querySelector('.treasure-gem');
@@ -389,11 +457,24 @@ function handleWin() {
   // Show attacked squares after short delay, then save score
   setTimeout(() => {
     revealAttackedSquares();
+  revealAttackedSquares();
+
+  if (puzzlesSolved < TARGET_PUZZLES) {
+    // On ajoute la pénalité au temps cumulé et on continue
+    savedTime = (savedTime || 0) + penalty;
+    setTimeout(() => {
+      loadRandomPuzzle(false); // On ne réinitialise pas la session
+    }, 1500);
+  } else {
+    // Fin de la série de 10
+    pauseTimer();
+    savedTime += penalty; // Ajout de la dernière pénalité
     setTimeout(async () => {
       await sauveMeilleurTemps();
       showLeaderboard();
     }, 1000);
   }, 500);
+  }
 }
 
 function revealAttackedSquares() {
@@ -410,6 +491,7 @@ function revealAttackedSquares() {
 
 window.onLevelChange = function(level) {
   loadRandomPuzzle();
+  loadRandomPuzzle(true);
 };
 
 // ─────────────────────────────────────────────────────────
@@ -424,5 +506,6 @@ window.addEventListener('load', function() {
   if (container) container.appendChild(menuLevelFactory());
 
   loadRandomPuzzle();
+  loadRandomPuzzle(true);
   updateBoardSize();
 });
